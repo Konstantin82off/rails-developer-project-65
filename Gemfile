@@ -67,3 +67,5 @@ group :test do
 end
 
 gem 'rubocop-capybara', '~> 2.22', groups: %i[development test]
+
+gem "dotenv-rails", "~> 3.2", groups: [:development, :test]
