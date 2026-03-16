@@ -9,6 +9,20 @@ Rollbar.configure do |config|
     config.enabled = false
   end
 
+  # Set environment from Rails
+  config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+
+  # Optional: Set code version (for tracking deploys)
+  config.code_version = ENV['GIT_SHA']
+
+  # Add exception exclusions
+  config.exception_level_filters.merge!(
+    'ActionController::RoutingError' => 'ignore'
+  )
+
+  # Enable async reporting (recommended for performance)
+  # config.use_async = true
+
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
