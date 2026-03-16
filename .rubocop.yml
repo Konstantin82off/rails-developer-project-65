@@ -1,0 +1,32 @@
+plugins:
+  - rubocop-rails
+  - rubocop-capybara
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'node_modules/**/*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - '**/node_modules/**/*'
+    - 'app/assets/**/*'
+    - 'app/javascript/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/environments/*'
+    - 'config/routes.rb'
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/initializers/*'
