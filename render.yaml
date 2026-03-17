@@ -3,12 +3,14 @@ databases:
     databaseName: bulletin_board_production
     user: bulletin_board_user
     region: frankfurt
+    plan: free
 
 services:
   - type: web
     name: bulletin-board
     runtime: ruby
     region: frankfurt
+    plan: free
     buildCommand: "./bin/render-build.sh"
     startCommand: "./bin/render-start.sh"
     envVars:
