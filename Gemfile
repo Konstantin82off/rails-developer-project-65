@@ -8,8 +8,6 @@ ruby '3.2.2'
 gem 'rails', '~> 7.2.0'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3', '>= 1.4'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '>= 5.0'
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
@@ -43,16 +41,29 @@ gem 'bootsnap', require: false
 # Error tracking
 gem 'rollbar'
 
+# Authentication
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+
 group :development, :test do
+  # Use sqlite3 in development and test
+  gem 'sqlite3', '>= 1.4'
+
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
 
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false
 
+  # Environment variables
+  gem 'dotenv-rails', '~> 3.2'
+
   # Linters
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+
+  # Fix minitest compatibility with Rails 7.2
+  gem 'minitest', '~> 5.15'
 end
 
 group :development do
@@ -63,7 +74,11 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  gem 'rubocop-capybara', '~> 2.22', require: false
   gem 'selenium-webdriver'
 end
 
-gem 'rubocop-capybara', '~> 2.22', groups: %i[development test]
+group :production do
+  # Use PostgreSQL in production (for Render)
+  gem 'pg'
+end

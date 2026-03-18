@@ -2,13 +2,86 @@ Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = '06c191a7538f426394ece203bb0bcfb4'
+  config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
 
   # Here we'll disable in 'test':
   if Rails.env.test?
     config.enabled = false
   end
 
+  # === ENVIRONMENT & VERSION TRACKING ===
+  # Set environment from Rails
+  config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
+
+  # Add code version for release tracking (for tracking deploys)
+  config.code_version = ENV['GIT_SHA'] || '1.0.0'
+
+  # Set framework explicitly
+  config.framework = "Rails: #{Rails::VERSION::STRING}"
+
+  # === EXCEPTION FILTERING ===
+  # Ignore common non-actionable exceptions
+  config.exception_level_filters.merge!(
+    'ActiveRecord::RecordNotFound' => 'ignore',
+    'ActionController::RoutingError' => 'ignore',
+    'ActionController::InvalidAuthenticityToken' => 'warning'
+  )
+
+  # === PRIVACY / SCRUBBING (PII SAFETY) ===
+  # Scrub sensitive fields from logs
+  config.scrub_fields |= [
+    :password,
+    :password_confirmation,
+    :secret,
+    :token,
+    :api_key,
+    :access_token,
+    :oauth_token,
+    :credit_card,
+    :cvv
+  ]
+
+  # Scrub sensitive headers
+  config.scrub_headers |= [
+    'Authorization',
+    'X-Api-Key',
+    'Cookie'
+  ]
+
+  # === CLIENT-SIDE JAVASCRIPT TRACKING ===
+  # Report client-side JavaScript errors using rollbar.js
+  config.js_enabled = true
+  config.js_options = {
+    accessToken: ENV['ROLLBAR_CLIENT_TOKEN'], # Use your post_client_item token
+    captureUncaught: true,
+    captureUnhandledRejections: true,
+    payload: {
+      environment: Rails.env,
+      client: {
+        javascript: {
+          code_version: ENV['GIT_SHA'] || '1.0.0'
+        }
+      }
+    }
+  }
+
+  # === PERSON TRACKING (FOR WHEN AUTH IS ADDED) ===
+  # Add person (user) information for when authentication is added
+  config.person_method = 'current_user'
+  config.person_id_method = 'id'
+  config.person_username_method = 'username'
+  config.person_email_method = 'email'
+
+  # === PERFORMANCE (OPTIONAL, CAN ENABLE LATER) ===
+  # Enable async reporting for better performance
+  # config.use_async = true
+
+  # For Sidekiq (when you add background jobs)
+  # config.async_handler = proc { |payload|
+  #   RollbarJob.perform_later(payload)
+  # }
+
+  # === ADDITIONAL CONFIGURATION (KEEP AS IS) ===
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
@@ -22,17 +95,6 @@ Rollbar.configure do |config|
   # If you want to attach custom data to all exception and message reports,
   # provide a lambda like the following. It should return a hash.
   # config.custom_data_method = lambda { {:some_key => "some_value" } }
-
-  # Add exception class names to the exception_level_filters hash to
-  # change the level that exception is reported at. Note that if an exception
-  # has already been reported and logged the level will need to be changed
-  # via the rollbar interface.
-  # Valid levels: 'critical', 'error', 'warning', 'info', 'debug', 'ignore'
-  # 'ignore' will cause the exception to not be reported at all.
-  # config.exception_level_filters.merge!('MyCriticalException' => 'critical')
-  #
-  # You can also specify a callable, which will be called with the exception instance.
-  # config.exception_level_filters.merge!('MyCriticalException' => lambda { |e| 'critical' })
 
   # Enable asynchronous reporting (uses girl_friday or Threading if girl_friday
   # is not installed)
