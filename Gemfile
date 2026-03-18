@@ -41,6 +41,10 @@ gem 'bootsnap', require: false
 # Error tracking
 gem 'rollbar'
 
+# Authentication
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
+
 group :development, :test do
   # Use sqlite3 in development and test
   gem 'sqlite3', '>= 1.4'
