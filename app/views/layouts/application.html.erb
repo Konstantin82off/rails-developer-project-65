@@ -22,6 +22,15 @@
             <li class="nav-item">
               <%= link_to "Главная", root_path, class: "nav-link" %>
             </li>
+            <% if session[:user_id] %>
+              <li class="nav-item">
+                <%= link_to "Выйти", logout_path, class: "nav-link", method: :delete %>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Войти через GitHub", auth_request_path('github'), method: :post, class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
