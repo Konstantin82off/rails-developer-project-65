@@ -10,7 +10,8 @@
 
 ## Демо
 
-*Ссылка на задеплоенное приложение появится после деплоя на Render*
+Приложение доступно по адресу: [https://rails-developer-project-65.onrender.com](https://rails-developer-project-65.onrender.com)
+
 
 ## Технологии
 
@@ -41,28 +42,26 @@ rails db:migrate
 rails server
 ```
 
-После запуска приложение будет доступно по адресу: http://localhost:3000
+После запуска приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000/)
 
-Деплой
+## **Деплой**
+
 Проект подготовлен для деплоя на Render. Необходимые переменные окружения:
 
-RAILS_MASTER_KEY - мастер-ключ Rails (из config/master.key)
+- RAILS_MASTER_KEY - мастер-ключ Rails (из config/master.key)
+- ROLLBAR_ACCESS_TOKEN - токен для Rollbar
+- DATABASE_URL - автоматически добавляется Render
 
-ROLLBAR_ACCESS_TOKEN - токен для Rollbar
+## **Особенности реализации**
 
-DATABASE_URL - автоматически добавляется Render
+- Адаптивный интерфейс на Bootstrap
+- Отслеживание ошибок через Rollbar
+- Автоматические проверки кода через GitHub Actions
+- Подготовка к работе с пользователями и объявлениями
 
-Особенности реализации
-Адаптивный интерфейс на Bootstrap
+## **Автор**
 
-Отслеживание ошибок через Rollbar
+**Константин**
 
-Автоматические проверки кода через GitHub Actions
-
-Подготовка к работе с пользователями и объявлениями
-
-## Автор
-
-**Константин**  
 - GitHub: [@Konstantin82off](https://github.com/Konstantin82off)
 - Email: [k.udodov@internet.ru](mailto:k.udodov@internet.ru)
