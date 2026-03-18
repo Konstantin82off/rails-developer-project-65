@@ -12,7 +12,6 @@
 
 Приложение доступно по адресу: [https://rails-developer-project-65.onrender.com](https://rails-developer-project-65.onrender.com)
 
-
 ## Технологии
 
 - **Ruby** 3.2.2
@@ -25,7 +24,22 @@
 
 ## Установка и запуск
 
+### Быстрая настройка (рекомендуется)
+
 ```bash
+# Клонировать репозиторий
+git clone https://github.com/Konstantin82off/rails-developer-project-65.git
+cd rails-developer-project-65
+
+# Запустить автоматическую настройку проекта
+make setup
+```
+
+### **Ручная настройка**
+
+bash
+
+```javascript
 # Клонировать репозиторий
 git clone https://github.com/Konstantin82off/rails-developer-project-65.git
 cd rails-developer-project-65
@@ -38,11 +52,21 @@ yarn install
 rails db:create
 rails db:migrate
 
-# Запустить сервер разработки
-rails server
+# Скопировать переменные окружения
+cp .env.example .env
+# Затем отредактируйте .env, добавив свои GITHUB_CLIENT_ID и GITHUB_CLIENT_SECRET
 ```
 
 После запуска приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000/)
+
+## **Настройка GitHub OAuth**
+
+Для работы аутентификации через GitHub необходимо:
+
+1. Зарегистрировать новое OAuth приложение на [GitHub](https://github.com/settings/developers)
+2. Указать Homepage URL: http://localhost:3000
+3. Указать Authorization callback URL: http://localhost:3000/auth/github/callback
+4. Скопировать Client ID и Client Secret в файл .env
 
 ## **Деплой**
 
@@ -50,6 +74,8 @@ rails server
 
 - RAILS_MASTER_KEY - мастер-ключ Rails (из config/master.key)
 - ROLLBAR_ACCESS_TOKEN - токен для Rollbar
+- GITHUB_CLIENT_ID - Client ID от OAuth приложения
+- GITHUB_CLIENT_SECRET - Client Secret от OAuth приложения
 - DATABASE_URL - автоматически добавляется Render
 
 ## **Особенности реализации**
@@ -57,7 +83,8 @@ rails server
 - Адаптивный интерфейс на Bootstrap
 - Отслеживание ошибок через Rollbar
 - Автоматические проверки кода через GitHub Actions
-- Подготовка к работе с пользователями и объявлениями
+- Аутентификация через GitHub с помощью OmniAuth
+- Makefile для автоматизации настройки проекта
 
 ## **Автор**
 
