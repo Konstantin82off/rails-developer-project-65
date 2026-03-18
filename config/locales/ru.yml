@@ -1,0 +1,4 @@
+ru:
+  auth:
+    callback:
+      success: "Вы успешно вошли на сайт"
