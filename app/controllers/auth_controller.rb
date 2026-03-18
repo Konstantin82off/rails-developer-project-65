@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AuthController < ApplicationController
-  def request
+  def request_oauth
     # Этот метод просто инициирует OAuth редирект
     # OmniAuth обработает это автоматически
     redirect_to '/auth/github'

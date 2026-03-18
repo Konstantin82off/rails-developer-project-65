@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # Auth routes
-  post 'auth/:provider', to: 'auth#request', as: :auth_request
+  post 'auth/:provider', to: 'auth#request_oauth', as: :auth_request
   get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -15,7 +15,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Тестовый маршрут для Rollbar (закомментирован)
-  # get 'rollbar/test' => 'rollbar#test' if Rails.env.development?
 end

@@ -61,6 +61,9 @@ group :development, :test do
   # Linters
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
+
+  # Fix minitest compatibility with Rails 7.2
+  gem 'minitest', '~> 5.15'
 end
 
 group :development do
