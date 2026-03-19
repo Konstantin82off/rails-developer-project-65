@@ -1,4 +1,42 @@
 en:
-  auth:
-    callback:
-      success: "You have successfully signed in"
+  common:
+    please_login: "Please log in"
+    back: "Back"
+    edit: "Edit"
+    delete: "Delete"
+    confirm: "Are you sure?"
+  
+  web:
+    home:
+      index:
+        welcome: "Welcome to Bulletin Board!"
+        description: "Here you can post and find various classifieds"
+        view_all: "View all bulletins"
+        create_bulletin: "Post bulletin"
+    
+    bulletins:
+      index:
+        title: "All bulletins"
+        new_bulletin: "Post bulletin"
+        no_bulletins: "No bulletins yet"
+      
+      show:
+        back: "← Back to bulletins"
+        author: "Author"
+        category: "Category"
+        created_at: "Posted"
+      
+      new:
+        title: "New bulletin"
+        submit: "Create bulletin"
+      
+      create:
+        success: "Bulletin successfully created"
+        failure: "Failed to create bulletin"
+    
+    auth:
+      callback:
+        success: "You have successfully signed in"
+      
+      logout:
+        success: "You have signed out"

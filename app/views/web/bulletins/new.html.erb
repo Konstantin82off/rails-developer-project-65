@@ -1,0 +1,44 @@
+<h1>Новое объявление</h1>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with model: @bulletin, local: true do |form| %>
+      <% if @bulletin.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= pluralize(@bulletin.errors.count, "ошибка") %>:</h4>
+          <ul>
+            <% @bulletin.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="mb-3">
+        <%= form.label :title, 'Название', class: 'form-label' %>
+        <%= form.text_field :title, class: 'form-control' %>
+        <small class="text-muted">Максимум 50 символов</small>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :description, 'Описание', class: 'form-label' %>
+        <%= form.text_area :description, rows: 5, class: 'form-control' %>
+        <small class="text-muted">Максимум 1000 символов</small>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :category_id, 'Категория', class: 'form-label' %>
+        <%= form.collection_select :category_id, Category.all, :id, :name, 
+            { prompt: 'Выберите категорию' }, class: 'form-select' %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :image, 'Изображение', class: 'form-label' %>
+        <%= form.file_field :image, class: 'form-control', accept: 'image/*' %>
+        <small class="text-muted">Максимум 5 МБ</small>
+      </div>
+
+      <%= form.submit 'Создать объявление', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
