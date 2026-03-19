@@ -1,4 +1,58 @@
 ru:
-  auth:
-    callback:
-      success: "Вы успешно вошли на сайт"
+  time:
+    formats:
+      long: "%d %B %Y %H:%M"
+  
+  date:
+    formats:
+      long: "%d %B %Y"
+
+  common:
+    please_login: "Пожалуйста, войдите на сайт"
+    back: "Назад"
+    edit: "Редактировать"
+    delete: "Удалить"
+    confirm: "Вы уверены?"
+  
+  activerecord:
+    errors:
+      models:
+        bulletin:
+          attributes:
+            image:
+              too_big: "не должно превышать 5 МБ"
+  
+  web:
+    home:
+      index:
+        welcome: "Добро пожаловать на доску объявлений!"
+        description: "Здесь вы можете размещать и находить различные объявления"
+        view_all: "Смотреть все объявления"
+        create_bulletin: "Подать объявление"
+    
+    bulletins:
+      index:
+        title: "Все объявления"
+        new_bulletin: "Подать объявление"
+        no_bulletins: "Пока нет объявлений"
+      
+      show:
+        back: "← Назад к объявлениям"
+        author: "Автор"
+        category: "Категория"
+        created_at: "Дата публикации"
+      
+      new:
+        title: "Новое объявление"
+        submit: "Создать объявление"
+      
+      create:
+        success: "Объявление успешно создано"
+        failure: "Ошибка при создании объявления"
+    
+    auth:
+      callback:
+        success: "Вы успешно вошли на сайт"
+      
+      logout:
+        success: "Вы вышли из системы"
