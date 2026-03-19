@@ -3,7 +3,7 @@
 module Web
   class HomeController < ApplicationController
     def index
-      @bulletins = Bulletin.ordered.limit(10)
+      @bulletins = Bulletin.published.ordered.limit(10)
       @categories = Category.all
     end
   end

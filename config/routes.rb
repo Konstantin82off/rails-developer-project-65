@@ -7,17 +7,31 @@ Rails.application.routes.draw do
   # Все контроллеры в скоупе web
   scope module: 'web' do
     # Ресурс bulletins
-    resources :bulletins, only: [:index, :show, :new, :create]
+    resources :bulletins, only: [:index, :show, :new, :create] do
+      member do
+        patch :to_moderate
+        patch :archive
+      end
+    end
+
+    # Profile
+    resource :profile, only: :show
 
     # Auth routes
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
   end
 
-  # Админ-панель с префиксом admin_
+  # Админ-панель
   namespace :admin do
     resources :categories
-    resources :bulletins, only: [:index, :show, :edit, :update, :destroy]
+    resources :bulletins, only: [:index, :show, :edit, :update, :destroy] do
+      member do
+        patch :publish
+        patch :reject
+        patch :archive
+      end
+    end
     resources :users, only: [:index, :edit, :update]
   end
 
