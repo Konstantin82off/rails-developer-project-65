@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Корневой маршрут - главная страница (теперь с указанием неймспейса web)
+  # Корневой маршрут - главная страница
   root 'web/home#index'
 
   # Все контроллеры в скоупе web
@@ -14,6 +12,13 @@ Rails.application.routes.draw do
     # Auth routes
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
+  end
+
+  # Админ-панель с префиксом admin_
+  namespace :admin do
+    resources :categories
+    resources :bulletins, only: [:index, :show, :edit, :update, :destroy]
+    resources :users, only: [:index, :edit, :update]
   end
 
   # Reveal health status on /up

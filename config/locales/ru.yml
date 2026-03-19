@@ -2,10 +2,12 @@ ru:
   time:
     formats:
       long: "%d %B %Y %H:%M"
+      short: "%d.%m.%Y"
   
   date:
     formats:
       long: "%d %B %Y"
+      short: "%d.%m.%Y"
 
   common:
     please_login: "Пожалуйста, войдите на сайт"
@@ -22,6 +24,95 @@ ru:
             image:
               too_big: "не должно превышать 5 МБ"
   
+  admin:
+    base:
+      not_authorized: "У вас нет прав для доступа к этой странице"
+    
+    categories:
+      create:
+        success: "Категория создана"
+      update:
+        success: "Категория обновлена"
+      destroy:
+        success: "Категория удалена"
+      new:
+        title: "Новая категория"
+        name: "Название категории"
+        submit: "Создать"
+        cancel: "Отмена"
+      edit:
+        title: "Редактирование категории"
+        name: "Название категории"
+        submit: "Сохранить"
+        cancel: "Отмена"
+      index:
+        title: "Управление категориями"
+        new_category: "Добавить категорию"
+        name: "Название"
+        created_at: "Дата создания"
+        actions: "Действия"
+        edit: "Редактировать"
+        delete: "Удалить"
+        confirm_delete: "Вы уверены, что хотите удалить категорию?"
+      
+    bulletins:
+      create:
+        success: "Объявление создано"
+      update:
+        success: "Объявление обновлено"
+      destroy:
+        success: "Объявление удалено"
+      index:
+        title: "Управление объявлениями"
+        title_field: "Заголовок"
+        user: "Пользователь"
+        category: "Категория"
+        created_at: "Дата"
+        actions: "Действия"
+        view: "Просмотр"
+        edit: "Ред."
+        delete: "Удалить"
+        confirm_delete: "Вы уверены?"
+      show:
+        description: "Описание"
+        author: "Автор"
+        created_at: "Дата публикации"
+        back: "← Назад к списку"
+        edit: "Редактировать"
+        delete: "Удалить"
+        confirm_delete: "Вы уверены?"
+      edit:
+        title: "Редактирование объявления"
+        title_field: "Заголовок"
+        description: "Описание"
+        category: "Категория"
+        current_image: "Текущее изображение"
+        image: "Изображение"
+        image_hint: "Максимум 5 МБ"
+        submit: "Сохранить"
+        cancel: "Отмена"
+      
+    users:
+      update:
+        success: "Пользователь обновлен"
+      index:
+        title: "Управление пользователями"
+        name: "Имя"
+        email: "Email"
+        admin: "Администратор"
+        created_at: "Дата регистрации"
+        actions: "Действия"
+        edit: "Ред."
+        yes: "Да"
+        no: "Нет"
+      edit:
+        title: "Редактирование пользователя"
+        name: "Имя"
+        email: "Email"
+        admin_status: "Права администратора"
+        save: "Сохранить"
+        cancel: "Отмена"
+
   web:
     home:
       index:

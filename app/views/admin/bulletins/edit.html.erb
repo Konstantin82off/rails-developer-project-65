@@ -1,0 +1,50 @@
+<div class="container mt-4">
+  <h1><%= t('admin.bulletins.edit.title') %></h1>
+
+  <%= form_with model: [:admin, @bulletin], local: true do |form| %>
+    <% if @bulletin.errors.any? %>
+      <div class="alert alert-danger">
+        <h4><%= pluralize(@bulletin.errors.count, "ошибка") %>:</h4>
+        <ul>
+          <% @bulletin.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :title, t('admin.bulletins.edit.title_field'), class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :description, t('admin.bulletins.edit.description'), class: 'form-label' %>
+      <%= form.text_area :description, rows: 5, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :category_id, t('admin.bulletins.edit.category'), class: 'form-label' %>
+      <%= form.collection_select :category_id, Category.all, :id, :name, 
+          {}, class: 'form-select' %>
+    </div>
+
+    <% if @bulletin.image.attached? %>
+      <div class="mb-3">
+        <p><strong><%= t('admin.bulletins.edit.current_image') %>:</strong></p>
+        <%= image_tag @bulletin.image.variant(resize_to_limit: [200, 150]), class: "img-thumbnail mb-2" %>
+      </div>
+    <% end %>
+
+    <div class="mb-3">
+      <%= form.label :image, t('admin.bulletins.edit.image'), class: 'form-label' %>
+      <%= form.file_field :image, class: 'form-control', accept: 'image/*' %>
+      <small class="text-muted"><%= t('admin.bulletins.edit.image_hint') %></small>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit t('admin.bulletins.edit.submit'), class: 'btn btn-primary' %>
+      <%= link_to t('admin.bulletins.edit.cancel'), admin_bulletins_path, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>

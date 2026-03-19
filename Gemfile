@@ -45,6 +45,9 @@ gem 'rollbar'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 
+# Authorization
+gem 'pundit'
+
 group :development, :test do
   # Use sqlite3 in development and test
   gem 'sqlite3', '>= 1.4'
