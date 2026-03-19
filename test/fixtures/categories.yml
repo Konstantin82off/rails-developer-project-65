@@ -1,7 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+# test/fixtures/categories.yml
+cars:
+  name: Автомобили
 
-one:
-  name: MyString
+electronics:
+  name: Электроника
 
-two:
-  name: MyString
+jobs:
+  name: Работа
+
+services:
+  name: Услуги
+
+real_estate:
+  name: Недвижимость
+
+for_children:
+  name: Для детей
