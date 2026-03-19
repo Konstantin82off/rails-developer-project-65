@@ -25,6 +25,34 @@
           <strong><%= t('admin.bulletins.show.created_at') %>:</strong> <%= l(@bulletin.created_at, format: :long) %>
         </div>
       </div>
+      
+      <%# Кнопки для управления состояниями %>
+      <div class="mt-4">
+        <h5>Управление состоянием:</h5>
+        <div class="d-flex gap-2">
+          <% if @bulletin.may_publish? %>
+            <%= button_to 'Опубликовать', publish_admin_bulletin_path(@bulletin), 
+                method: :patch, 
+                class: 'btn btn-success',
+                form_class: 'd-inline' %>
+          <% end %>
+
+          <% if @bulletin.may_reject? %>
+            <%= button_to 'Отклонить', reject_admin_bulletin_path(@bulletin), 
+                method: :patch, 
+                class: 'btn btn-warning',
+                form_class: 'd-inline' %>
+          <% end %>
+
+          <% if @bulletin.may_archive? %>
+            <%= button_to 'В архив', archive_admin_bulletin_path(@bulletin), 
+                method: :patch, 
+                class: 'btn btn-secondary',
+                form_class: 'd-inline',
+                data: { confirm: 'Вы уверены?' } %>
+          <% end %>
+        </div>
+      </div>
     </div>
     
     <div class="card-footer">

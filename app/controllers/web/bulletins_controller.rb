@@ -2,15 +2,14 @@
 
 module Web
   class BulletinsController < ApplicationController
-    before_action :authenticate_user!, only: %i[new create]
+    before_action :authenticate_user!, only: %i[new create to_moderate archive]
+    before_action :set_bulletin, only: %i[show to_moderate archive]
 
     def index
-      @bulletins = Bulletin.ordered
+      @bulletins = Bulletin.published.ordered
     end
 
-    def show
-      @bulletin = Bulletin.find(params[:id])
-    end
+    def show; end
 
     def new
       @bulletin = Bulletin.new
@@ -26,7 +25,27 @@ module Web
       end
     end
 
+    def to_moderate
+      if @bulletin.to_moderate
+        redirect_to profile_path, notice: t('.success')
+      else
+        redirect_to profile_path, alert: t('.failure')
+      end
+    end
+
+    def archive
+      if @bulletin.archive
+        redirect_to profile_path, notice: t('.success')
+      else
+        redirect_to profile_path, alert: t('.failure')
+      end
+    end
+
     private
+
+    def set_bulletin
+      @bulletin = Bulletin.find(params[:id])
+    end
 
     def bulletin_params
       params.require(:bulletin).permit(:title, :description, :category_id, :image)

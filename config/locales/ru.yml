@@ -91,6 +91,15 @@ ru:
         image_hint: "Максимум 5 МБ"
         submit: "Сохранить"
         cancel: "Отмена"
+      publish:
+        success: "Объявление опубликовано"
+        failure: "Не удалось опубликовать объявление"
+      reject:
+        success: "Объявление отклонено"
+        failure: "Не удалось отклонить объявление"
+      archive:
+        success: "Объявление отправлено в архив"
+        failure: "Не удалось отправить объявление в архив"
       
     users:
       update:
@@ -140,6 +149,30 @@ ru:
       create:
         success: "Объявление успешно создано"
         failure: "Ошибка при создании объявления"
+      
+      to_moderate:
+        success: "Объявление отправлено на модерацию"
+        failure: "Не удалось отправить объявление на модерацию"
+      
+      archive:
+        success: "Объявление отправлено в архив"
+        failure: "Не удалось отправить объявление в архив"
+    
+    profiles:
+      show:
+        title: "Мои объявления"
+        new_bulletin: "Создать объявление"
+        no_bulletins: "У вас пока нет объявлений"
+        create_first: "Создать первое объявление"
+        statuses:
+          draft: "Черновик"
+          under_moderation: "На модерации"
+          published: "Опубликовано"
+          rejected: "Отклонено"
+          archived: "В архиве"
+        actions:
+          to_moderate: "На модерацию"
+          archive: "В архив"
     
     auth:
       callback:
