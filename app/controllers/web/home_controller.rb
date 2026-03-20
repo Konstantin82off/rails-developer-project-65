@@ -3,7 +3,8 @@
 module Web
   class HomeController < ApplicationController
     def index
-      @bulletins = Bulletin.published.ordered.limit(10)
+      @q = Bulletin.published.ransack(params[:q])
+      @bulletins = @q.result.ordered.page(params[:page]).per(12)
       @categories = Category.all
     end
   end

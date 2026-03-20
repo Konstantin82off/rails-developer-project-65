@@ -5,7 +5,8 @@ module Web
     before_action :authenticate_user!
 
     def show
-      @bulletins = current_user.bulletins.ordered
+      @q = current_user.bulletins.ransack(params[:q])
+      @bulletins = @q.result.ordered.page(params[:page]).per(10)
     end
   end
 end
