@@ -1,13 +1,38 @@
 <div class="row">
   <div class="col-md-3">
     <h4>Категории</h4>
-    <div class="list-group">
-      <%= link_to 'Все объявления', root_path, class: "list-group-item list-group-item-action #{'active' unless params[:category_id]}" %>
+    <div class="list-group mb-4">
+      <%= link_to 'Все объявления', root_path, 
+          class: "list-group-item list-group-item-action #{'active' if params[:category_id].blank? && params[:q].blank?}" %>
       <% @categories.each do |category| %>
         <%= link_to category.name, root_path(category_id: category.id), 
             class: "list-group-item list-group-item-action #{'active' if params[:category_id].to_i == category.id}" %>
       <% end %>
     </div>
+
+    <h4>Поиск</h4>
+    <%= search_form_for @q, url: root_path, class: 'mb-4' do |f| %>
+      <div class="mb-3">
+        <%= f.label :title_or_description_cont, 'Название или описание', class: 'form-label' %>
+        <%= f.search_field :title_or_description_cont, class: 'form-control', placeholder: 'Введите текст...' %>
+      </div>
+      
+      <div class="mb-3">
+        <%= f.label :category_id_eq, 'Категория', class: 'form-label' %>
+        <%= f.collection_select :category_id_eq, @categories, :id, :name, 
+            { include_blank: 'Любая' }, class: 'form-select' %>
+      </div>
+      
+      <div class="mb-3">
+        <%= f.label :state_eq, 'Статус', class: 'form-label' %>
+        <%= f.select :state_eq, 
+            options_for_select([['Опубликовано', 'published'], ['В архиве', 'archived']]),
+            { include_blank: 'Любой' }, class: 'form-select' %>
+      </div>
+      
+      <%= f.submit 'Искать', class: 'btn btn-primary w-100' %>
+      <%= link_to 'Сбросить', root_path, class: 'btn btn-outline-secondary w-100 mt-2' %>
+    <% end %>
   </div>
   
   <div class="col-md-9">
@@ -19,20 +44,16 @@
     </div>
 
     <div class="row">
-      <% @bulletins.each do |bulletin| %>
-        <div class="col-md-6 mb-4">
-          <div class="card h-100">
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to bulletin.title, bulletin_path(bulletin) %></h5>
-              <p class="card-text"><%= truncate(bulletin.description, length: 100) %></p>
-              <p class="card-text">
-                <small class="text-muted">
-                  Категория: <%= bulletin.category.name %><br>
-                  Автор: <%= bulletin.user.name %><br>
-                  <%= time_ago_in_words(bulletin.created_at) %> назад
-                </small>
-              </p>
-            </div>
+      <% if @bulletins.present? %>
+        <%= render partial: 'web/bulletins/bulletin', collection: @bulletins, as: :bulletin %>
+        
+        <div class="col-12">
+          <%= paginate @bulletins, theme: 'bootstrap-5' %>
+        </div>
+      <% else %>
+        <div class="col-12">
+          <div class="alert alert-info">
+            По вашему запросу ничего не найдено
           </div>
         </div>
       <% end %>

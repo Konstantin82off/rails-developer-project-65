@@ -51,6 +51,10 @@ gem 'pundit'
 # State machine for bulletins
 gem 'aasm'
 
+# Search and pagination
+gem 'kaminari'
+gem 'ransack'
+
 group :development, :test do
   # Use sqlite3 in development and test
   gem 'sqlite3', '>= 1.4'

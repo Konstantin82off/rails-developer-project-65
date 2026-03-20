@@ -5,7 +5,8 @@ module Admin
     before_action :set_bulletin, only: %i[show edit update destroy publish reject archive]
 
     def index
-      @bulletins = Bulletin.ordered
+      @q = Bulletin.ransack(params[:q])
+      @bulletins = @q.result.ordered.page(params[:page]).per(20)
     end
 
     def show; end
