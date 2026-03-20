@@ -25,5 +25,8 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "resolutions": {
+    "minimatch": "9.0.5"
+  }
 }
