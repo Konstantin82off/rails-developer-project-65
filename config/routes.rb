@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     delete 'logout', to: 'auth#destroy'
   end
 
-  namespace :admin do
+  # Админ-панель - правильный неймспейс
+  namespace :admin, module: 'web/admin', as: :admin do
     resources :categories
     resources :bulletins, only: :index do
       member do

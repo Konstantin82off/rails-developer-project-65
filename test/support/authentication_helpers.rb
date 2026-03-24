@@ -4,6 +4,7 @@ module AuthenticationHelpers
   def sign_in(user, _options = {})
     setup_omniauth_mock(user)
     get '/auth/github/callback'
+    follow_redirect!
   end
 
   def sign_out

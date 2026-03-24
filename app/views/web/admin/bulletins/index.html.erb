@@ -1,0 +1,32 @@
+<h1 class="mb-4"><%= t('admin.bulletins.index.title') %></h1>
+
+<table class="table table-bordered">
+  <thead>
+     <tr>
+      <th><%= t('admin.bulletins.index.title_field') %></th>
+      <th><%= t('admin.bulletins.index.user') %></th>
+      <th><%= t('admin.bulletins.index.category') %></th>
+      <th><%= t('admin.bulletins.index.created_at') %></th>
+      <th><%= t('admin.bulletins.index.actions') %></th>
+     </tr>
+  </thead>
+  <tbody>
+    <% @bulletins.each do |bulletin| %>
+       <tr>
+        <td><%= bulletin.title %></td>
+        <td><%= bulletin.user.email %></td>
+        <td><%= bulletin.category.name %></td>
+        <td><%= l(bulletin.created_at, format: :short) %></td>
+        <td>
+          <% if bulletin.under_moderation? %>
+            <%= button_to t('admin.bulletins.index.publish'), publish_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_publish') }, class: 'btn btn-sm btn-success' %>
+            <%= button_to t('admin.bulletins.index.reject'), reject_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_reject') }, class: 'btn btn-sm btn-warning' %>
+          <% end %>
+          <%= button_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-secondary' %>
+        </td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @bulletins %>

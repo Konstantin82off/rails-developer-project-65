@@ -21,7 +21,7 @@ module Web
 
       OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
 
-      get callback_auth_url('github')
+      get '/auth/github/callback'
       assert_response :redirect
 
       user = User.find_by(email: auth_hash[:info][:email])
