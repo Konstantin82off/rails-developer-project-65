@@ -1,18 +1,14 @@
 # frozen_string_literal: true
 
 module Web
-  class AuthController < Web::ApplicationController
-    # POST /auth/:provider
-    def request
-      redirect_to "/auth/#{params[:provider]}", allow_other_host: true
-    end
+  class AuthController < ::ApplicationController
+    skip_before_action :verify_authenticity_token, only: :callback
 
-    # GET /auth/:provider/callback
     def callback
       auth_hash = request.env['omniauth.auth']
       return redirect_to(root_path, alert: t('auth.failure')) if auth_hash.nil?
 
-      user = find_or_create_user_from_auth(auth_hash)
+      user = find_or_create_user(auth_hash)
       session[:user_id] = user.id
 
       redirect_to root_path, notice: t('auth.success')
@@ -25,14 +21,13 @@ module Web
 
     private
 
-    def find_or_create_user_from_auth(auth_hash)
+    def find_or_create_user(auth_hash)
       email = auth_hash[:info][:email].downcase
-      name = auth_hash[:info][:name]
-
       user = User.find_or_initialize_by(email: email)
+
       return user unless user.new_record?
 
-      user.name = name
+      user.name = auth_hash[:info][:name]
       user.save!
       user
     end

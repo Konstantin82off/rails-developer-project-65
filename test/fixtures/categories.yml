@@ -1,18 +1,16 @@
-# test/fixtures/categories.yml
-cars:
+# frozen_string_literal: true
+
+one:
   name: Автомобили
 
-electronics:
+two:
   name: Электроника
 
-jobs:
+three:
   name: Работа
-
-services:
-  name: Услуги
 
 real_estate:
   name: Недвижимость
 
-for_children:
-  name: Для детей
+services:
+  name: Услуги

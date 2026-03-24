@@ -5,7 +5,7 @@ require 'test_helper'
 module Web
   class AuthControllerTest < ActionDispatch::IntegrationTest
     test 'check github auth' do
-      post auth_request_path('github')
+      get '/auth/github'
       assert_response :redirect
     end
 
@@ -25,9 +25,8 @@ module Web
       assert_response :redirect
 
       user = User.find_by(email: auth_hash[:info][:email])
-
       assert user
-      assert signed_in?
+      assert_equal session[:user_id], user.id
     end
   end
 end

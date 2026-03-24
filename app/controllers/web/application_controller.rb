@@ -19,7 +19,7 @@ module Web
     def authenticate_user!
       return if signed_in?
 
-      redirect_to auth_request_path('github'), alert: t('common.please_login')
+      redirect_to '/auth/github'
     end
   end
 end

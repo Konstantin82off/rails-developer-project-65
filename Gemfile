@@ -75,6 +75,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'selenium-webdriver'
+  # Fix compatibility with Rails 8.0
+  gem 'minitest', '~> 5.25'
 end
 
 group :production do
