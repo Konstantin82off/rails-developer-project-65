@@ -39,3 +39,11 @@ draft:
   category: two
   state: draft
   created_at: <%= 2.hours.ago %>
+
+rejected:
+  title: Отклоненное объявление
+  description: Это объявление было отклонено
+  user: one
+  category: three
+  state: rejected
+  created_at: <%= 3.hours.ago %>
