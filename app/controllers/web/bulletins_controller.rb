@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 module Web
-  class BulletinsController < ApplicationController
-    before_action :authenticate_user!, only: %i[new create to_moderate archive]
-    before_action :set_bulletin, only: %i[show to_moderate archive]
+  class BulletinsController < Web::ApplicationController
+    before_action :authenticate_user!, only: %i[new create edit update to_moderate archive]
+    before_action :set_bulletin, only: %i[show edit update to_moderate archive]
+    before_action :authorize_bulletin, only: %i[edit update to_moderate archive]
 
     def index
       @bulletins = Bulletin.published.ordered
@@ -15,6 +16,8 @@ module Web
       @bulletin = Bulletin.new
     end
 
+    def edit; end
+
     def create
       @bulletin = current_user.bulletins.build(bulletin_params)
 
@@ -22,6 +25,14 @@ module Web
         redirect_to @bulletin, notice: t('.success')
       else
         render :new, status: :unprocessable_content
+      end
+    end
+
+    def update
+      if @bulletin.update(bulletin_params)
+        redirect_to @bulletin, notice: t('.success')
+      else
+        render :edit, status: :unprocessable_content
       end
     end
 
@@ -47,14 +58,12 @@ module Web
       @bulletin = Bulletin.find(params[:id])
     end
 
-    def bulletin_params
-      params.require(:bulletin).permit(:title, :description, :category_id, :image)
+    def authorize_bulletin
+      authorize @bulletin
     end
 
-    def authenticate_user!
-      return if session[:user_id]
-
-      redirect_to auth_request_path('github'), alert: t('common.please_login')
+    def bulletin_params
+      params.require(:bulletin).permit(:title, :description, :category_id, :image)
     end
   end
 end
