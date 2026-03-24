@@ -2,22 +2,46 @@
 
 class BulletinPolicy < ApplicationPolicy
   def index?
-    user.admin?
+    true
   end
 
   def show?
-    user.admin?
+    true
+  end
+
+  def new?
+    user.present?
+  end
+
+  def create?
+    user.present?
   end
 
   def edit?
-    user.admin? || record.user == user
+    user.present? && (user.admin? || record.user == user)
   end
 
   def update?
-    user.admin? || record.user == user
+    user.present? && (user.admin? || record.user == user)
+  end
+
+  def to_moderate?
+    user.present? && record.user == user && record.draft?
+  end
+
+  def archive?
+    user.present? && (user.admin? || record.user == user) && !record.archived?
+  end
+
+  def publish?
+    user&.admin? && record.under_moderation?
+  end
+
+  def reject?
+    user&.admin? && record.under_moderation?
   end
 
   def destroy?
-    user.admin?
+    user&.admin?
   end
 end

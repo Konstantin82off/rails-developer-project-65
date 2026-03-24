@@ -20,26 +20,25 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item">
-              <%= link_to "Главная", root_path, class: "nav-link" %>
+              <%= link_to t('web.bulletins.index.title'), root_path, class: "nav-link" %>
             </li>
-            
-            <%# Ссылка на админку только для администраторов %>
-            <% if user_signed_in? && current_user.admin? %>
+
+            <% if signed_in? && current_user.admin? %>
               <li class="nav-item">
-                <%= link_to "Админка", admin_categories_path, class: "nav-link" %>
+                <%= link_to t('admin.dashboard'), admin_categories_path, class: "nav-link" %>
               </li>
             <% end %>
-            
-            <% if user_signed_in? %>
+
+            <% if signed_in? %>
               <li class="nav-item">
-                <%= link_to "Профиль", profile_path, class: "nav-link" %>
+                <%= link_to t('web.profiles.show.title'), profile_path, class: "nav-link" %>
               </li>
               <li class="nav-item">
-                <%= link_to "Выйти", logout_path, class: "nav-link", method: :delete %>
+                <%= link_to t('auth.logout'), logout_path, class: "nav-link", data: { turbo_method: :delete } %>
               </li>
             <% else %>
               <li class="nav-item">
-                <%= link_to "Войти через GitHub", auth_request_path('github'), method: :post, class: "nav-link" %>
+                <%= link_to t('auth.login_with_github'), auth_request_path('github'), data: { turbo_method: :post }, class: "nav-link" %>
               </li>
             <% end %>
           </ul>
