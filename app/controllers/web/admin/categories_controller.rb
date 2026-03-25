@@ -49,7 +49,7 @@ module Web
       end
 
       def category_params
-        params.require(:category).permit(:name)
+        params.expect(category: [:name])
       end
     end
   end

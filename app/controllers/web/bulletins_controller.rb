@@ -65,7 +65,7 @@ module Web
     end
 
     def bulletin_params
-      params.require(:bulletin).permit(:title, :description, :category_id, :image)
+      params.expect(bulletin: %i[title description category_id image])
     end
   end
 end
