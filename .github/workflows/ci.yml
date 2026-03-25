@@ -15,7 +15,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 4.0.2
           bundler-cache: true
 
       - name: Scan for common Rails security vulnerabilities using static analysis
@@ -30,7 +30,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 4.0.2
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -48,7 +48,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.2.2
+          ruby-version: 4.0.2
           bundler-cache: true
 
       - name: Setup Node
@@ -57,7 +57,7 @@ jobs:
           node-version: 18
 
       - name: Install JavaScript dependencies
-        run: npm install
+        run: yarn install
 
       - name: Compile assets
         run: |
@@ -80,4 +80,3 @@ jobs:
           name: screenshots
           path: ${{ github.workspace }}/tmp/screenshots
           if-no-files-found: ignore
-          
