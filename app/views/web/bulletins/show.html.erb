@@ -6,39 +6,39 @@
           <h2 class="mb-0"><%= @bulletin.title %></h2>
           <span class="badge bg-primary"><%= @bulletin.category.name %></span>
         </div>
-        
+
         <div class="card-body">
           <% if @bulletin.image.attached? %>
             <div class="text-center mb-4">
               <%= image_tag @bulletin.image.variant(resize_to_limit: [600, 400]), class: "img-fluid rounded" %>
             </div>
           <% end %>
-          
+
           <div class="mb-4">
-            <h5>Описание:</h5>
+            <h5><%= t('web.bulletins.show.description') %>:</h5>
             <p class="lead"><%= @bulletin.description %></p>
           </div>
-          
+
           <div class="row mb-3">
             <div class="col-sm-6">
-              <strong>Автор:</strong> <%= @bulletin.user.name %>
+              <strong><%= t('web.bulletins.show.author') %>:</strong> <%= @bulletin.user.name %>
             </div>
             <div class="col-sm-6">
-              <strong>Дата:</strong> <%= l(@bulletin.created_at, format: :long) %>
+              <strong><%= t('web.bulletins.show.created_at') %>:</strong> <%= l(@bulletin.created_at, format: :long) %>
             </div>
           </div>
         </div>
-        
+
         <div class="card-footer">
           <div class="d-flex justify-content-between">
-            <%= link_to '← Назад к объявлениям', bulletins_path, class: 'btn btn-outline-secondary' %>
-            
-            <% if user_signed_in? && current_user == @bulletin.user %>
+            <%= link_to t('web.bulletins.show.back'), bulletins_path, class: 'btn btn-outline-secondary' %>
+
+            <% if signed_in? && current_user == @bulletin.user %>
               <div>
-                <%= link_to 'Редактировать', '#', class: 'btn btn-outline-primary me-2' %>
-                <%= button_to 'Удалить', '#', method: :delete, 
-                    class: 'btn btn-outline-danger', 
-                    data: { confirm: 'Вы уверены?' } %>
+                <%= link_to t('common.edit'), edit_bulletin_path(@bulletin), class: 'btn btn-outline-primary me-2' %>
+                <%= button_to t('common.delete'), bulletin_path(@bulletin), method: :delete,
+                    class: 'btn btn-outline-danger',
+                    data: { confirm: t('common.confirm') } %>
               </div>
             <% end %>
           </div>

@@ -1,4 +1,5 @@
-# test/fixtures/users.yml
+# frozen_string_literal: true
+
 one:
   name: John Doe
   email: john@example.com
@@ -13,4 +14,3 @@ admin:
   name: Admin User
   email: admin@example.com
   admin: true
-  

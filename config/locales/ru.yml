@@ -3,7 +3,7 @@ ru:
     formats:
       long: "%d %B %Y %H:%M"
       short: "%d.%m.%Y"
-  
+
   date:
     formats:
       long: "%d %B %Y"
@@ -15,7 +15,7 @@ ru:
     edit: "Редактировать"
     delete: "Удалить"
     confirm: "Вы уверены?"
-  
+
   activerecord:
     errors:
       models:
@@ -23,18 +23,21 @@ ru:
           attributes:
             image:
               too_big: "не должно превышать 5 МБ"
-  
+
   admin:
-    base:
-      not_authorized: "У вас нет прав для доступа к этой странице"
-    
+    access_denied: "Доступ запрещен"
+    back_to_site: "На сайт"
+    logout: "Выйти"
+    dashboard: "Панель администратора"
+
     categories:
       create:
-        success: "Категория создана"
+        success: "Категория успешно создана"
       update:
-        success: "Категория обновлена"
+        success: "Категория успешно обновлена"
       destroy:
-        success: "Категория удалена"
+        success: "Категория успешно удалена"
+        error: "Нельзя удалить категорию, содержащую объявления"
       new:
         title: "Новая категория"
         name: "Название категории"
@@ -49,38 +52,74 @@ ru:
         title: "Управление категориями"
         new_category: "Добавить категорию"
         name: "Название"
+        posts_count: "Количество объявлений"
         created_at: "Дата создания"
         actions: "Действия"
         edit: "Редактировать"
         delete: "Удалить"
         confirm_delete: "Вы уверены, что хотите удалить категорию?"
-      
+
     bulletins:
-      create:
-        success: "Объявление создано"
-      update:
-        success: "Объявление обновлено"
-      destroy:
-        success: "Объявление удалено"
+      publish:
+        success: "Объявление успешно опубликовано"
+        failure: "Не удалось опубликовать объявление"
+      reject:
+        success: "Объявление успешно отклонено"
+        failure: "Не удалось отклонить объявление"
+      archive:
+        success: "Объявление успешно отправлено в архив"
+        failure: "Не удалось отправить объявление в архив"
       index:
         title: "Управление объявлениями"
         title_field: "Заголовок"
         user: "Пользователь"
         category: "Категория"
-        created_at: "Дата"
+        created_at: "Дата создания"
         actions: "Действия"
         view: "Просмотр"
-        edit: "Ред."
-        delete: "Удалить"
-        confirm_delete: "Вы уверены?"
+        publish: "Опубликовать"
+        reject: "Отклонить"
+        archive: "В архив"
+        confirm_publish: "Опубликовать объявление?"
+        confirm_reject: "Отклонить объявление?"
+        confirm_archive: "Отправить объявление в архив?"
+
+  web:
+    bulletins:
+      index:
+        title: "Все объявления"
+        new_bulletin: "Подать объявление"
+        no_bulletins: "Пока нет объявлений"
+        search: "Поиск"
+        category: "Категория"
+        author: "Автор"
+        all_categories: "Все категории"
+        status: "Статус"
+        all_statuses: "Все статусы"
+        show: "Просмотр"
+        created_at: "Дата"
+
       show:
+        back: "← Назад к объявлениям"
         description: "Описание"
         author: "Автор"
+        category: "Категория"
         created_at: "Дата публикации"
-        back: "← Назад к списку"
         edit: "Редактировать"
         delete: "Удалить"
         confirm_delete: "Вы уверены?"
+
+      new:
+        title: "Новое объявление"
+        title_field: "Заголовок"
+        description: "Описание"
+        category: "Категория"
+        select_category: "Выберите категорию"
+        image: "Изображение"
+        image_hint: "Максимум 5 МБ"
+        submit: "Создать объявление"
+        cancel: "Отмена"
+
       edit:
         title: "Редактирование объявления"
         title_field: "Заголовок"
@@ -91,79 +130,28 @@ ru:
         image_hint: "Максимум 5 МБ"
         submit: "Сохранить"
         cancel: "Отмена"
-      publish:
-        success: "Объявление опубликовано"
-        failure: "Не удалось опубликовать объявление"
-      reject:
-        success: "Объявление отклонено"
-        failure: "Не удалось отклонить объявление"
-      archive:
-        success: "Объявление отправлено в архив"
-        failure: "Не удалось отправить объявление в архив"
-      
-    users:
-      update:
-        success: "Пользователь обновлен"
-      index:
-        title: "Управление пользователями"
-        name: "Имя"
-        email: "Email"
-        admin: "Администратор"
-        created_at: "Дата регистрации"
-        actions: "Действия"
-        edit: "Ред."
-        yes: "Да"
-        no: "Нет"
-      edit:
-        title: "Редактирование пользователя"
-        name: "Имя"
-        email: "Email"
-        admin_status: "Права администратора"
-        save: "Сохранить"
-        cancel: "Отмена"
 
-  web:
-    home:
-      index:
-        welcome: "Добро пожаловать на доску объявлений!"
-        description: "Здесь вы можете размещать и находить различные объявления"
-        view_all: "Смотреть все объявления"
-        create_bulletin: "Подать объявление"
-    
-    bulletins:
-      index:
-        title: "Все объявления"
-        new_bulletin: "Подать объявление"
-        no_bulletins: "Пока нет объявлений"
-      
-      show:
-        back: "← Назад к объявлениям"
-        author: "Автор"
-        category: "Категория"
-        created_at: "Дата публикации"
-      
-      new:
-        title: "Новое объявление"
-        submit: "Создать объявление"
-      
       create:
         success: "Объявление успешно создано"
-        failure: "Ошибка при создании объявления"
-      
+
+      update:
+        success: "Объявление успешно обновлено"
+
       to_moderate:
         success: "Объявление отправлено на модерацию"
         failure: "Не удалось отправить объявление на модерацию"
-      
+
       archive:
         success: "Объявление отправлено в архив"
         failure: "Не удалось отправить объявление в архив"
-    
+
     profiles:
       show:
         title: "Мои объявления"
         new_bulletin: "Создать объявление"
         no_bulletins: "У вас пока нет объявлений"
         create_first: "Создать первое объявление"
+        search: "Поиск"
         statuses:
           draft: "Черновик"
           under_moderation: "На модерации"
@@ -173,13 +161,14 @@ ru:
         actions:
           to_moderate: "На модерацию"
           archive: "В архив"
-    
+          edit: "Редактировать"
+          delete: "Удалить"
+
     auth:
-      callback:
-        success: "Вы успешно вошли на сайт"
-      
-      logout:
-        success: "Вы вышли из системы"
+      success: "Вы успешно вошли на сайт"
+      logout: "Вы вышли из системы"
+      failure: "Ошибка аутентификации"
+      login_with_github: "Войти через GitHub"
 
   views:
     pagination:
@@ -188,4 +177,3 @@ ru:
       previous: "&lsaquo; Предыдущая"
       next: "Следующая &rsaquo;"
       truncate: "&hellip;"
-      

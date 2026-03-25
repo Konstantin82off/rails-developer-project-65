@@ -1,21 +1,49 @@
-# test/fixtures/bulletins.yml
-car_for_sale:
+# frozen_string_literal: true
+
+one:
   title: Продам Toyota Camry
   description: Отличный автомобиль, 2020 года, в хорошем состоянии
   user: one
-  category: cars
+  category: one
+  state: published
   created_at: <%= 1.day.ago %>
 
-iphone:
+two:
   title: iPhone 14 Pro Max
   description: Новый, в упаковке, гарантия
   user: two
-  category: electronics
+  category: two
+  state: published
   created_at: <%= 2.days.ago %>
 
-job_vacancy:
+three:
   title: Требуется Ruby разработчик
   description: Удаленная работа, гибкий график
   user: one
-  category: jobs
+  category: three
+  state: published
   created_at: <%= 3.days.ago %>
+
+under_moderation:
+  title: На модерации
+  description: Объявление на модерации
+  user: one
+  category: one
+  state: under_moderation
+  created_at: <%= 1.hour.ago %>
+
+draft:
+  title: Черновик
+  description: Черновик объявления
+  user: two
+  category: two
+  state: draft
+  created_at: <%= 2.hours.ago %>
+
+rejected:
+  title: Отклоненное объявление
+  description: Это объявление было отклонено
+  user: one
+  category: three
+  state: rejected
+  created_at: <%= 3.hours.ago %>

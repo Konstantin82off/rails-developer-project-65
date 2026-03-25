@@ -8,9 +8,9 @@
       <p class="card-text"><%= truncate(bulletin.description, length: 100) %></p>
       <p class="card-text">
         <small class="text-muted">
-          Категория: <%= bulletin.category.name %><br>
-          Автор: <%= bulletin.user.name %><br>
-          <%= time_ago_in_words(bulletin.created_at) %> назад
+          <%= t('web.bulletins.index.category') %>: <%= bulletin.category.name %><br>
+          <%= t('web.bulletins.index.author') %>: <%= bulletin.user.name %><br>
+          <%= l(bulletin.created_at, format: :short) %>
         </small>
       </p>
     </div>
