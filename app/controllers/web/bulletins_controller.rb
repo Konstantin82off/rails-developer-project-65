@@ -37,7 +37,8 @@ module Web
     end
 
     def to_moderate
-      if @bulletin.to_moderate
+      if @bulletin.may_to_moderate?
+        @bulletin.to_moderate!
         redirect_to profile_path, notice: t('.success')
       else
         redirect_to profile_path, alert: t('.failure')
@@ -45,7 +46,8 @@ module Web
     end
 
     def archive
-      if @bulletin.archive
+      if @bulletin.may_archive?
+        @bulletin.archive!
         redirect_to profile_path, notice: t('.success')
       else
         redirect_to profile_path, alert: t('.failure')

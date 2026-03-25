@@ -6,8 +6,10 @@ module Web
   class BulletinsControllerTest < ActionDispatch::IntegrationTest
     setup do
       @user = users(:one)
+      @other_user = users(:two)
       @category = categories(:one)
       @bulletin = bulletins(:one)
+      @draft_bulletin = bulletins(:draft)
     end
 
     test 'should get index' do
@@ -68,7 +70,7 @@ module Web
     end
 
     test 'should not get edit when not owner' do
-      sign_in(@user)
+      sign_in(@other_user)
       get edit_bulletin_path(@bulletin)
       assert_redirected_to root_path
     end
@@ -86,25 +88,23 @@ module Web
     end
 
     test 'should send to moderate when owner' do
-      draft_bulletin = bulletins(:draft)
-      sign_in(draft_bulletin.user)
+      sign_in(@draft_bulletin.user)
 
-      patch to_moderate_bulletin_path(draft_bulletin)
+      patch to_moderate_bulletin_path(@draft_bulletin)
 
       assert_redirected_to profile_path
-      draft_bulletin.reload
-      assert draft_bulletin.under_moderation?
+      @draft_bulletin.reload
+      assert @draft_bulletin.under_moderation?
     end
 
     test 'should archive when owner' do
-      draft_bulletin = bulletins(:draft)
-      sign_in(draft_bulletin.user)
+      sign_in(@draft_bulletin.user)
 
-      patch archive_bulletin_path(draft_bulletin)
+      patch archive_bulletin_path(@draft_bulletin)
 
       assert_redirected_to profile_path
-      draft_bulletin.reload
-      assert draft_bulletin.archived?
+      @draft_bulletin.reload
+      assert @draft_bulletin.archived?
     end
   end
 end

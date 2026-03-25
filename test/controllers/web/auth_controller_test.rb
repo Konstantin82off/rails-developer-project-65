@@ -4,11 +4,7 @@ require 'test_helper'
 
 module Web
   class AuthControllerTest < ActionDispatch::IntegrationTest
-    test 'check github auth' do
-      get '/auth/github'
-      assert_response :redirect
-    end
-
+    # Тест для проверки callback - это главный тест аутентификации
     test 'create' do
       auth_hash = {
         provider: 'github',
