@@ -12,11 +12,11 @@ Rails.application.routes.draw do
     end
 
     resource :profile, only: :show
-    get 'auth/github/callback', to: 'auth#callback'
+    post 'auth/:provider', to: 'auth#request', as: :auth_request
+    get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     delete 'logout', to: 'auth#destroy'
   end
 
-  # Админ-панель - правильный неймспейс
   namespace :admin, module: 'web/admin', as: :admin do
     resources :categories
     resources :bulletins, only: :index do

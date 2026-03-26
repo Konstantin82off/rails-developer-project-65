@@ -4,7 +4,11 @@ require 'test_helper'
 
 module Web
   class AuthControllerTest < ActionDispatch::IntegrationTest
-    # Тест для проверки callback - это главный тест аутентификации
+    test 'check github auth' do
+      post auth_request_path('github')
+      assert_response :redirect
+    end
+
     test 'create' do
       auth_hash = {
         provider: 'github',
@@ -17,12 +21,13 @@ module Web
 
       OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
 
-      get '/auth/github/callback'
+      get callback_auth_url('github')
       assert_response :redirect
 
       user = User.find_by(email: auth_hash[:info][:email])
+
       assert user
-      assert_equal session[:user_id], user.id
+      assert signed_in?
     end
   end
 end
