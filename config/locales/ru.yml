@@ -190,11 +190,11 @@ ru:
           edit: "Редактировать"
           delete: "Удалить"
 
-    auth:
-      success: "Вы успешно вошли на сайт"
-      logout: "Вы вышли из системы"
-      failure: "Ошибка аутентификации"
-      login_with_github: "Войти через GitHub"
+  auth:
+    success: "Вы успешно вошли на сайт"
+    logout: "Вы вышли из системы"
+    failure: "Ошибка аутентификации"
+    login_with_github: "Войти через GitHub"
 
   views:
     pagination:
