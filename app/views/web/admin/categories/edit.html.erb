@@ -4,7 +4,7 @@
   <%= form_with model: [:admin, @category], local: true do |form| %>
     <% if @category.errors.any? %>
       <div class="alert alert-danger">
-        <h4><%= pluralize(@category.errors.count, "ошибка") %>:</h4>
+        <h4><%= t('errors.messages.prohibited', count: @category.errors.count, model: t('activerecord.models.category')) %></h4>
         <ul>
           <% @category.errors.full_messages.each do |message| %>
             <li><%= message %></li>

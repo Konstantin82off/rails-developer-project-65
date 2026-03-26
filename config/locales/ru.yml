@@ -16,7 +16,19 @@ ru:
     delete: "Удалить"
     confirm: "Вы уверены?"
 
+  layouts:
+    application:
+      title: "Доска объявлений"
+      brand: "Доска объявлений"
+
+  errors:
+    messages:
+      prohibited: "Не удалось сохранить %{model}: %{count} ошибок"
+
   activerecord:
+    models:
+      bulletin: "объявление"
+      category: "категория"
     errors:
       models:
         bulletin:
@@ -151,7 +163,21 @@ ru:
         new_bulletin: "Создать объявление"
         no_bulletins: "У вас пока нет объявлений"
         create_first: "Создать первое объявление"
-        search: "Поиск"
+        search: "Поиск по моим объявлениям"
+        search_placeholder: "Введите текст..."
+        title_or_description: "Название или описание"
+        category: "Категория"
+        status: "Статус"
+        all_categories: "Любая"
+        all_statuses: "Любой"
+        search_button: "Искать"
+        reset: "Сбросить"
+        table:
+          title: "Заголовок"
+          category: "Категория"
+          status: "Статус"
+          date: "Дата"
+          actions: "Действия"
         statuses:
           draft: "Черновик"
           under_moderation: "На модерации"

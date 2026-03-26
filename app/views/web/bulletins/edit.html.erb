@@ -6,7 +6,7 @@
       <%= form_with model: @bulletin, local: true, class: 'mt-4' do |f| %>
         <% if @bulletin.errors.any? %>
           <div class="alert alert-danger">
-            <h5><%= pluralize(@bulletin.errors.count, 'error') %> prohibited this bulletin from being saved:</h5>
+            <h5><%= t('errors.messages.prohibited', count: @bulletin.errors.count, model: t('activerecord.models.bulletin')) %></h5>
             <ul>
               <% @bulletin.errors.full_messages.each do |message| %>
                 <li><%= message %></li>
