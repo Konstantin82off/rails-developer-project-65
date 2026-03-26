@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = ENV['ROLLBAR_ACCESS_TOKEN']
+  config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN', nil)
 
   # Here we'll disable in 'test':
   if Rails.env.test?
@@ -29,30 +31,30 @@ Rollbar.configure do |config|
 
   # === PRIVACY / SCRUBBING (PII SAFETY) ===
   # Scrub sensitive fields from logs
-  config.scrub_fields |= [
-    :password,
-    :password_confirmation,
-    :secret,
-    :token,
-    :api_key,
-    :access_token,
-    :oauth_token,
-    :credit_card,
-    :cvv
+  config.scrub_fields |= %i[
+    password
+    password_confirmation
+    secret
+    token
+    api_key
+    access_token
+    oauth_token
+    credit_card
+    cvv
   ]
 
   # Scrub sensitive headers
-  config.scrub_headers |= [
-    'Authorization',
-    'X-Api-Key',
-    'Cookie'
+  config.scrub_headers |= %w[
+    Authorization
+    X-Api-Key
+    Cookie
   ]
 
   # === CLIENT-SIDE JAVASCRIPT TRACKING ===
   # Report client-side JavaScript errors using rollbar.js
   config.js_enabled = true
   config.js_options = {
-    accessToken: ENV['ROLLBAR_CLIENT_TOKEN'], # Use your post_client_item token
+    accessToken: ENV.fetch('ROLLBAR_CLIENT_TOKEN', nil), # Use your post_client_item token
     captureUncaught: true,
     captureUnhandledRejections: true,
     payload: {

@@ -1,32 +1,54 @@
-plugins:
-  - rubocop-rails
-  - rubocop-capybara
-
+---
 AllCops:
+  TargetRubyVersion: 4.0
   NewCops: enable
   SuggestExtensions: false
   Exclude:
     - 'bin/**/*'
-    - 'db/**/*'
-    - 'config/**/*'
-    - 'node_modules/**/*'
-    - 'tmp/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/**'
     - 'vendor/**/*'
-    - '**/node_modules/**/*'
+    - 'node_modules/**/*'
     - 'app/assets/**/*'
     - 'app/javascript/**/*'
+    - 'tmp/**/*'
+
+plugins:
+  - rubocop-rails
+
+Rails:
+  Enabled: true
 
 Style/Documentation:
   Enabled: false
 
-Metrics/BlockLength:
-  Exclude:
-    - 'config/environments/*'
-    - 'config/routes.rb'
-    - 'spec/**/*'
-    - 'test/**/*'
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
 
 Layout/LineLength:
-  Max: 120
-  Exclude:
-    - 'config/initializers/*'
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: single_quotes
+
+Style/FetchEnvVar:
+  Enabled: true

@@ -45,12 +45,12 @@ end
   end
 end
 
-puts "Создано:"
-puts "  - Пользователей: #{User.count}"
-puts "  - Администраторов: #{User.where(admin: true).count}"
-puts "  - Категорий: #{Category.count}"
-puts "  - Объявлений: #{Bulletin.count}"
-puts "  - Статусы объявлений:"
+Rails.logger.debug 'Создано:'
+Rails.logger.debug { "  - Пользователей: #{User.count}" }
+Rails.logger.debug { "  - Администраторов: #{User.where(admin: true).count}" }
+Rails.logger.debug { "  - Категорий: #{Category.count}" }
+Rails.logger.debug { "  - Объявлений: #{Bulletin.count}" }
+Rails.logger.debug '  - Статусы объявлений:'
 Bulletin.group(:state).count.each do |state, count|
-  puts "    - #{state}: #{count}"
+  Rails.logger.debug "    - #{state}: #{count}"
 end
