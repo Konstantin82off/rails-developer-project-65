@@ -14,8 +14,8 @@ module Web
         provider: 'github',
         uid: '12345',
         info: {
-          email: 'test@example.com',
-          name: 'Test User'
+          email: Faker::Internet.email,
+          name: Faker::Name.first_name
         }
       }
 
@@ -24,7 +24,7 @@ module Web
       get callback_auth_url('github')
       assert_response :redirect
 
-      user = User.find_by(email: auth_hash[:info][:email])
+      user = User.find_by(email: auth_hash[:info][:email].downcase)
 
       assert user
       assert signed_in?
