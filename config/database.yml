@@ -25,6 +25,3 @@ production:
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   url: <%= ENV['DATABASE_URL'] %>
-  database: bulletin_board_production
-  username: bulletin_board_user
-  password: <%= ENV['BULLETIN_BOARD_DATABASE_PASSWORD'] %>
