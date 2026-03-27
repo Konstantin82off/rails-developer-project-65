@@ -14,9 +14,9 @@
 
 ## Технологии
 
-- **Ruby** 3.2.2
-- **Ruby on Rails** 7.2
-- **Bootstrap** 5
+- **Ruby** 4.0.2
+- **Ruby on Rails** 8.0
+- **Bootstrap** 5 (с темой пагинации bootstrap4 для совместимости)
 - **esbuild** для сборки JavaScript
 - **PostgreSQL** (в продакшене)
 - **Rollbar** для отслеживания ошибок
@@ -51,6 +51,7 @@ yarn install
 # Создать и настроить базу данных
 rails db:create
 rails db:migrate
+rails db:seed
 
 # Скопировать переменные окружения
 cp .env.example .env
@@ -64,7 +65,7 @@ cp .env.example .env
 Для работы аутентификации через GitHub необходимо:
 
 1. Зарегистрировать новое OAuth приложение на [GitHub](https://github.com/settings/developers)
-2. Указать Homepage URL: http://localhost:3000
+2. Указать Homepage URL: http://localhost:3000 (для разработки) или URL вашего приложения (для продакшена)
 3. Указать Authorization callback URL: http://localhost:3000/auth/github/callback
 4. Скопировать Client ID и Client Secret в файл .env
 
@@ -80,11 +81,15 @@ cp .env.example .env
 
 ## **Особенности реализации**
 
-- Адаптивный интерфейс на Bootstrap
+- Адаптивный интерфейс на Bootstrap 5
 - Отслеживание ошибок через Rollbar
 - Автоматические проверки кода через GitHub Actions
 - Аутентификация через GitHub с помощью OmniAuth
 - Makefile для автоматизации настройки проекта
+- Полная локализация на русский язык (i18n)
+- Поиск и фильтрация объявлений (ransack)
+- Пагинация (kaminari с темой bootstrap4)
+- Конечный автомат для управления статусами объявлений (AASM)
 
 ## **Автор**
 
