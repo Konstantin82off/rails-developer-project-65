@@ -64,6 +64,9 @@ group :development, :test do
 
   # Use sqlite3 in development and test
   gem 'sqlite3', '~> 2.0'
+
+  # For generating test data
+  gem 'faker'
 end
 
 group :development do
@@ -77,8 +80,6 @@ group :test do
   gem 'selenium-webdriver'
   # Fix compatibility with Rails 8.0
   gem 'minitest', '~> 5.25'
-  # For generating test data
-  gem 'faker'
 end
 
 group :production do
