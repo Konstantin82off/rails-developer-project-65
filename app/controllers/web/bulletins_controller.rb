@@ -7,7 +7,8 @@ module Web
     before_action :authorize_bulletin, only: %i[edit update to_moderate archive]
 
     def index
-      @bulletins = Bulletin.published.ordered
+      @q = Bulletin.published.ransack(params[:q])
+      @bulletins = @q.result.order(created_at: :desc).page(params[:page])
     end
 
     def show; end

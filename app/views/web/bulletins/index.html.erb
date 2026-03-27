@@ -6,9 +6,38 @@
     <% end %>
   </div>
 
+  <!-- Форма поиска и фильтрации -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= search_form_for @q, class: 'row g-3' do |f| %>
+        <div class="col-md-5">
+          <%= f.search_field :title_or_description_cont,
+              class: 'form-control',
+              placeholder: t('web.bulletins.index.search_placeholder') %>
+        </div>
+        <div class="col-md-4">
+          <%= f.collection_select :category_id_eq,
+              Category.all,
+              :id,
+              :name,
+              { include_blank: t('web.bulletins.index.all_categories') },
+              class: 'form-select' %>
+        </div>
+        <div class="col-md-3">
+          <%= f.submit t('web.bulletins.index.search'), class: 'btn btn-primary w-100' %>
+          <%= link_to t('web.bulletins.index.reset'), root_path, class: 'btn btn-outline-secondary w-100 mt-2' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
   <% if @bulletins.any? %>
     <div class="row">
       <%= render @bulletins %>
+    </div>
+    <!-- Пагинация -->
+    <div class="mt-4">
+      <%= paginate @bulletins, theme: 'bootstrap-5' %>
     </div>
   <% else %>
     <div class="alert alert-info">
