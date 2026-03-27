@@ -10,7 +10,7 @@
 
 ## Демо
 
-Приложение доступно по адресу: [https://rails-developer-project-65.onrender.com](https://rails-developer-project-65.onrender.com)
+Приложение доступно по адресу: [https://rails-developer-project-65-kwud.onrender.com](https://rails-developer-project-65-kwud.onrender.com)
 
 ## Технологии
 
