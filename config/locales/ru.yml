@@ -113,12 +113,12 @@ ru:
   web:
     bulletins:
       index:
-        title: "Все объявления"
+        title: "Объявления"
         new_bulletin: "Подать объявление"
         no_bulletins: "Пока нет объявлений"
-        search: "Найти"
+        search: "Искать"
         search_placeholder: "Поиск по заголовку или описанию..."
-        reset: "Сбросить"
+        reset: "Сброс"
         category: "Категория"
         author: "Автор"
         all_categories: "Все категории"

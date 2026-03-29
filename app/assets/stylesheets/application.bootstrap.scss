@@ -1,2 +1,11 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+.row.g-1 .col {
+  margin-bottom: 0.05rem !important;
+}
+
+.col-lg-3 {
+  flex: 0 0 auto;
+  width: calc(25% - 0.5rem);
+}
