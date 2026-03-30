@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Создаем администратора
-User.find_or_create_by!(email: 'admin@example.com') do |user|
+User.find_or_create_by!(email: 'k.udodov@bk.ru') do |user|
   user.name = 'Admin'
   user.admin = true
 end
