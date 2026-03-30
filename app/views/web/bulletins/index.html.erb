@@ -1,31 +1,31 @@
 <div class="border rounded shadow p-4 mb-4 bg-white">
-  <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="fs-2"><%= t('web.bulletins.index.title') %></h1>
-  </div>
+  <h1 class="h3 mb-4"><%= t('web.bulletins.index.title') %></h1>
 
-  <!-- Форма поиска -->
-  <div class="row mb-4">
-    <div class="col-12 col-md-8">
-      <%= search_form_for @q, class: 'row g-2 align-items-end' do |f| %>
-        <div class="col-12 col-md-5">
-          <%= f.search_field :title_or_description_cont,
-              class: 'form-control',
-              placeholder: t('web.bulletins.index.search_placeholder') %>
+  <!-- Форма поиска с серым фоном -->
+  <div class="bg-light p-4 rounded mb-4">
+    <%= search_form_for @q, class: 'row g-3 align-items-start' do |f| %>
+      <div class="col-12 col-md-6">
+        <%= f.search_field :title_or_description_cont,
+            class: 'form-control',
+            placeholder: '' %>
+        <label class="form-label small mt-1"><%= t('web.bulletins.index.search_label') %></label>
+      </div>
+      <div class="col-12 col-md-4">
+        <%= f.collection_select :category_id_eq,
+            Category.all,
+            :id,
+            :name,
+            { include_blank: true },
+            class: 'form-select' %>
+        <label class="form-label small mt-1"><%= t('web.bulletins.index.category_label') %></label>
+      </div>
+      <div class="col-12 col-md-2">
+        <div class="d-flex gap-2">
+          <%= f.submit t('web.bulletins.index.search'), class: 'btn btn-primary btn-sm' %>
+          <%= link_to t('web.bulletins.index.reset'), root_path, class: 'btn btn-outline-secondary btn-sm' %>
         </div>
-        <div class="col-12 col-md-4">
-          <%= f.collection_select :category_id_eq,
-              Category.all,
-              :id,
-              :name,
-              { include_blank: t('web.bulletins.index.all_categories') },
-              class: 'form-select' %>
-        </div>
-        <div class="col-12 col-md-3">
-          <%= f.submit t('web.bulletins.index.search'), class: 'btn btn-primary' %>
-          <%= link_to t('web.bulletins.index.reset'), root_path, class: 'btn btn-outline-secondary ms-2' %>
-        </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 
   <% if @bulletins.any? %>

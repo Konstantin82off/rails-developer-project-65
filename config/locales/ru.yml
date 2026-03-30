@@ -118,6 +118,8 @@ ru:
         new_bulletin: "Подать объявление"
         no_bulletins: "Пока нет объявлений"
         search: "Искать"
+        search_label: "Искать по названию объявления"
+        category_label: "Выбрать категорию"
         search_placeholder: "Поиск по заголовку или описанию..."
         reset: "Сброс"
         category: "Категория"
