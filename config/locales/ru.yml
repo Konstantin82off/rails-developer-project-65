@@ -114,6 +114,7 @@ ru:
     bulletins:
       index:
         title: "Объявления"
+        home: "Главная"
         new_bulletin: "Подать объявление"
         no_bulletins: "Пока нет объявлений"
         search: "Искать"
@@ -211,6 +212,7 @@ ru:
     logout: "Вы вышли из системы"
     failure: "Ошибка аутентификации"
     login_with_github: "Войти через GitHub"
+    login: "Войти"
 
   views:
     pagination:
