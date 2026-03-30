@@ -211,7 +211,7 @@ ru:
 
   auth:
     success: "Вы успешно вошли на сайт"
-    logout: "Вы вышли из системы"
+    logout: "Выйти из системы"
     failure: "Ошибка аутентификации"
     login_with_github: "Войти через GitHub"
     login: "Войти"
