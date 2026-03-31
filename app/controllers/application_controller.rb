@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  before_action :set_rollbar_context, if: -> { defined?(Rollbar) }
+  before_action :set_rollbar_context, if: -> { defined?(Rollbar) && respond_to?(:current_user) }
 
   private
 
