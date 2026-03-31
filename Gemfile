@@ -38,8 +38,10 @@ gem 'kaminari'
 gem 'ransack'
 
 # Authentication
-gem 'omniauth-github'
-gem 'omniauth-rails_csrf_protection'
+gem 'omniauth', '~> 2.1'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-oauth2', '~> 1.8.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
 # Authorization
 gem 'pundit'

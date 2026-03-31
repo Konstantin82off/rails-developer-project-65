@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+OmniAuth.config.logger = Rails.logger
 OmniAuth.config.full_host = lambda do |_env|
   if Rails.env.development?
     'http://localhost:3000'
@@ -11,5 +12,7 @@ OmniAuth.config.allowed_request_methods = %i[get post]
 OmniAuth.config.silence_get_warning = true
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :github, ENV.fetch('GITHUB_CLIENT_ID', nil), ENV.fetch('GITHUB_CLIENT_SECRET', nil), scope: 'user'
+  provider :github, ENV.fetch('GITHUB_CLIENT_ID', nil), ENV.fetch('GITHUB_CLIENT_SECRET', nil),
+           scope: 'user',
+           provider_ignores_state: Rails.env.development?
 end
