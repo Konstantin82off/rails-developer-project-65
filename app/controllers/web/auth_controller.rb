@@ -11,6 +11,12 @@ module Web
       user = find_or_create_user(auth_hash)
       session[:user_id] = user.id
 
+      # Логирование для проверки статуса администратора
+      Rails.logger.info '=== USER LOGIN ==='
+      Rails.logger.info "User email: #{user.email}"
+      Rails.logger.info "User admin: #{user.admin?}"
+      Rails.logger.info '================='
+
       redirect_to root_path, notice: t('auth.success')
     end
 
