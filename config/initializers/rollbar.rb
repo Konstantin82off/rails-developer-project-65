@@ -26,7 +26,8 @@ Rollbar.configure do |config|
   config.exception_level_filters.merge!(
     'ActiveRecord::RecordNotFound' => 'ignore',
     'ActionController::RoutingError' => 'ignore',
-    'ActionController::InvalidAuthenticityToken' => 'warning'
+    'ActionController::InvalidAuthenticityToken' => 'warning',
+    'ActiveStorage::FileNotFoundError' => 'ignore'
   )
 
   # === PRIVACY / SCRUBBING (PII SAFETY) ===
