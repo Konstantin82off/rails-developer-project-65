@@ -27,7 +27,8 @@ Rollbar.configure do |config|
     'ActiveRecord::RecordNotFound' => 'ignore',
     'ActionController::RoutingError' => 'ignore',
     'ActionController::InvalidAuthenticityToken' => 'warning',
-    'ActiveStorage::FileNotFoundError' => 'ignore'
+    'ActiveStorage::FileNotFoundError' => 'ignore',
+    'Vips::Error' => 'ignore'
   )
 
   # === PRIVACY / SCRUBBING (PII SAFETY) ===
