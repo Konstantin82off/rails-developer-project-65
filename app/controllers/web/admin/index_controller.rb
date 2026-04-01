@@ -3,7 +3,9 @@
 module Web
   module Admin
     class IndexController < Web::Admin::ApplicationController
-      def index; end
+      def index
+        redirect_to admin_bulletins_path
+      end
     end
   end
 end

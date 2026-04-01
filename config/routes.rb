@@ -27,6 +27,7 @@ Rails.application.routes.draw do
         patch :archive
       end
     end
+    get 'all_bulletins', to: 'bulletins#all', as: :all_bulletins
   end
 
   get 'up' => 'rails/health#show', as: :rails_health_check

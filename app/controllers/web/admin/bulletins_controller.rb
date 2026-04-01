@@ -7,7 +7,17 @@ module Web
       before_action :authorize_bulletin, only: %i[publish reject archive]
 
       def index
-        @bulletins = Bulletin.order(created_at: :desc).page(params[:page])
+        @q = Bulletin.where(state: :under_moderation).ransack(params[:q])
+        @bulletins = @q.result.order(created_at: :desc).page(params[:page])
+        @title = t('admin.sidebar.moderation')
+        render :index
+      end
+
+      def all
+        @q = Bulletin.ransack(params[:q])
+        @bulletins = @q.result.order(created_at: :desc).page(params[:page])
+        @title = t('admin.sidebar.all_bulletins')
+        render :index
       end
 
       def publish
