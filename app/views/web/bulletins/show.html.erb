@@ -30,17 +30,26 @@
         </div>
 
         <div class="card-footer">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-center">
             <%= link_to t('web.bulletins.show.back'), bulletins_path, class: 'btn btn-outline-secondary' %>
 
-            <% if signed_in? && current_user == @bulletin.user %>
-              <div>
-                <%= link_to t('common.edit'), edit_bulletin_path(@bulletin), class: 'btn btn-outline-primary me-2' %>
+            <div class="d-flex gap-2">
+              <% if signed_in? && current_user == @bulletin.user %>
+                <% if @bulletin.draft? %>
+                  <%= button_to t('web.bulletins.show.to_moderate'), to_moderate_bulletin_path(@bulletin), method: :patch, class: 'btn btn-outline-primary' %>
+                <% end %>
+
+                <%= link_to t('common.edit'), edit_bulletin_path(@bulletin), class: 'btn btn-outline-primary' %>
+
+                <% if @bulletin.may_archive? %>
+                  <%= button_to t('web.bulletins.show.archive'), archive_bulletin_path(@bulletin), method: :patch, class: 'btn btn-outline-warning', data: { confirm: t('common.confirm') } %>
+                <% end %>
+
                 <%= button_to t('common.delete'), bulletin_path(@bulletin), method: :delete,
                     class: 'btn btn-outline-danger',
                     data: { confirm: t('common.confirm') } %>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

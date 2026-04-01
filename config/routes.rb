@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   scope module: 'web' do
     root 'bulletins#index'
 
-    resources :bulletins, only: %i[index show new create edit update] do
+    resources :bulletins, only: %i[index show new create edit update destroy] do
       member do
         patch :to_moderate
         patch :archive

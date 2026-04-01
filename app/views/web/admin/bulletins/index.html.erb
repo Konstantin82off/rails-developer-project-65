@@ -51,29 +51,36 @@
         <tbody>
           <% @bulletins.each do |bulletin| %>
             <tr>
-              <td><%= link_to bulletin.title, bulletin_path(bulletin), class: 'text-primary' %>
+              <td><%= link_to bulletin.title, bulletin_path(bulletin), class: 'text-primary' %></td>
               <% if @title == t('admin.sidebar.moderation') %>
-                <td><%= l(bulletin.created_at, format: :short) %>
-                <td>
-                  <%= link_to t('admin.bulletins.index.publish'), publish_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_publish') }, class: 'btn btn-sm btn-link text-primary p-0 me-3' %>
-                  <%= link_to t('admin.bulletins.index.reject'), reject_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_reject') }, class: 'btn btn-sm btn-link text-primary p-0 me-3' %>
-                  <%= link_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-link text-danger p-0' %>
+                <td><%= l(bulletin.created_at, format: :short) %></td>
+                <td class="actions-cell">
+                  <div class="d-flex flex-nowrap gap-2">
+                    <%= button_to t('admin.bulletins.index.publish'), publish_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_publish') }, class: 'btn btn-sm btn-link text-primary p-0' %>
+                    <%= button_to t('admin.bulletins.index.reject'), reject_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_reject') }, class: 'btn btn-sm btn-link text-primary p-0' %>
+                    <%= button_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-link text-danger p-0' %>
+                  </div>
+                </td>
               <% else %>
                 <td>
                   <span class="badge bg-<%= bulletin_state_color(bulletin.state) %>">
                     <%= t("admin.bulletins.index.state_#{bulletin.state}") %>
                   </span>
-                <td><%= l(bulletin.created_at, format: :short) %>
-                <td>
-                  <%= link_to t('admin.bulletins.index.show'), bulletin_path(bulletin), class: 'btn btn-sm btn-link text-primary p-0 me-3' %>
-                  <% if bulletin.may_archive? %>
-                    <%= link_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-link text-danger p-0' %>
-                  <% end %>
+                </td>
+                <td><%= l(bulletin.created_at, format: :short) %></td>
+                <td class="actions-cell">
+                  <div class="d-flex flex-nowrap gap-2">
+                    <%= link_to t('admin.bulletins.index.show'), bulletin_path(bulletin), class: 'btn btn-sm btn-link text-primary p-0' %>
+                    <% if bulletin.may_archive? %>
+                      <%= button_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-link text-danger p-0' %>
+                    <% end %>
+                  </div>
+                </td>
               <% end %>
-             </tr>
+            </tr>
           <% end %>
         </tbody>
-       </table>
+      </table>
     </div>
 
     <div class="mt-4">

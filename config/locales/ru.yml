@@ -156,6 +156,8 @@ ru:
         created_at: "Дата публикации"
         edit: "Редактировать"
         delete: "Удалить"
+        to_moderate: "На модерацию"
+        archive: "В архив"
         confirm_delete: "Вы уверены?"
 
       new:
@@ -196,6 +198,10 @@ ru:
         success: "Объявление отправлено в архив"
         failure: "Не удалось отправить объявление в архив"
 
+      destroy:
+        success: "Объявление успешно удалено"
+        failure: "Не удалось удалить объявление"
+
     profiles:
       show:
         title: "Мои объявления"
@@ -218,8 +224,11 @@ ru:
           rejected: "Отклонено"
           archived: "В архиве"
         actions:
-          to_moderate: "На модерацию"
+          show: "Показать"
+          edit: "Редактировать"
           archive: "В архив"
+          delete: "Удалить"
+          to_moderate: "На модерацию"
 
   auth:
     success: "Вы успешно вошли на сайт"
