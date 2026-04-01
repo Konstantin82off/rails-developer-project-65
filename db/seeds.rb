@@ -47,6 +47,8 @@ end
 
 # Вспомогательная функция для создания тестового изображения
 def attach_test_image(bulletin)
+  return if bulletin.image.attached?
+
   tempfile = Tempfile.new(['image', '.jpg'])
   tempfile.binmode
   # Минимальный валидный JPEG (1x1 пиксель)
@@ -63,7 +65,7 @@ ensure
   tempfile.unlink
 end
 
-# Создаем объявления из фикстур
+# Создаем объявления из фикстур (только если их нет)
 bulletins_from_fixtures = [
   { title: 'Продам Toyota Camry', description: 'Отличный автомобиль, 2020 года, в хорошем состоянии', user: users.first, category: categories.find { |c| c.name == 'Автомобили' }, state: 'published' },
   { title: 'iPhone 14 Pro Max', description: 'Новый, в упаковке, гарантия', user: users.second, category: categories.find { |c| c.name == 'Электроника' }, state: 'published' },
@@ -83,7 +85,46 @@ bulletins_from_fixtures.each do |data|
   attach_test_image(bulletin) unless bulletin.image.attached?
 end
 
-# Создаем дополнительные опубликованные объявления (для пагинации)
+# Создаем объявления ТОЛЬКО если их мало (меньше 100)
+if Bulletin.count < 100
+  # Создаем 100 объявлений
+  100.times do |i|
+    bulletin = Bulletin.new(
+      title: "Объявление ##{i + 1}",
+      description: "Описание объявления ##{i + 1}.",
+      user: users.sample,
+      category: categories.sample
+    )
+
+    bulletin.save(validate: false)
+
+    attach_test_image(bulletin) if i % 5 != 0
+
+    state = case i % 5
+            when 0 then 'draft'
+            when 1 then 'under_moderation'
+            when 2 then 'published'
+            when 3 then 'rejected'
+            when 4 then 'archived'
+            end
+    bulletin.update(state: state)
+  end
+
+  # Добавляем дополнительные опубликованные объявления
+  10.times do |i|
+    bulletin = Bulletin.new(
+      title: "Актуальное объявление #{i + 1}",
+      description: "Актуальное описание объявления #{i + 1}",
+      user: users.first,
+      category: categories.first,
+      state: 'published'
+    )
+    bulletin.save(validate: false)
+    attach_test_image(bulletin)
+  end
+end
+
+# Дополнительные опубликованные объявления для пагинации (только если их меньше 10)
 if Bulletin.published.count < 10
   20.times do |i|
     bulletin = Bulletin.new(
@@ -96,42 +137,6 @@ if Bulletin.published.count < 10
     bulletin.save(validate: false)
     attach_test_image(bulletin) if i % 3 != 0
   end
-end
-
-# Создаем 100 объявлений
-100.times do |i|
-  bulletin = Bulletin.new(
-    title: "Объявление ##{i + 1}",
-    description: "Описание объявления ##{i + 1}.",
-    user: users.sample,
-    category: categories.sample
-  )
-
-  bulletin.save(validate: false)
-
-  attach_test_image(bulletin) if i % 5 != 0
-
-  state = case i % 5
-          when 0 then 'draft'
-          when 1 then 'under_moderation'
-          when 2 then 'published'
-          when 3 then 'rejected'
-          when 4 then 'archived'
-          end
-  bulletin.update(state: state)
-end
-
-# Добавляем дополнительные опубликованные объявления
-10.times do |i|
-  bulletin = Bulletin.new(
-    title: "Актуальное объявление #{i + 1}",
-    description: "Актуальное описание объявления #{i + 1}",
-    user: users.first,
-    category: categories.first,
-    state: 'published'
-  )
-  bulletin.save(validate: false)
-  attach_test_image(bulletin)
 end
 
 Rails.logger.debug 'Создано:'
