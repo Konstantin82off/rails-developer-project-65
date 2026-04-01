@@ -24,6 +24,12 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
+            <% if signed_in? && current_user.admin? %>
+              <li class="nav-item">
+                <%= link_to t('admin.dashboard'), admin_categories_path, class: "nav-link fs-6" %>
+              </li>
+            <% end %>
+
             <% if signed_in? %>
               <li class="nav-item">
                 <%= link_to t('web.profiles.show.title'), profile_path, class: "nav-link fs-6" %>
