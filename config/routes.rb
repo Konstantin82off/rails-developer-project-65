@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin, module: 'web/admin', as: :admin do
+    root to: 'index#index'
     resources :categories
     resources :bulletins, only: :index do
       member do

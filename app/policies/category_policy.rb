@@ -2,30 +2,26 @@
 
 class CategoryPolicy < ApplicationPolicy
   def index?
-    user.admin?
-  end
-
-  def show?
-    user.admin?
+    user&.admin?
   end
 
   def new?
-    user.admin?
+    user&.admin?
   end
 
   def create?
-    user.admin?
+    user&.admin?
   end
 
   def edit?
-    user.admin?
+    user&.admin?
   end
 
   def update?
-    user.admin?
+    user&.admin?
   end
 
   def destroy?
-    user.admin?
+    user&.admin?
   end
 end
