@@ -16,6 +16,10 @@
         <div class="d-flex align-items-center gap-3">
           <%= link_to t('layouts.application.brand'), root_path, class: "navbar-brand fs-5 fw-normal" %>
           <%= link_to t('web.bulletins.index.home'), root_path, class: "nav-link fs-6 text-secondary" %>
+          <% if signed_in? %>
+            <%= link_to t('web.profiles.show.title'), profile_path, class: "nav-link fs-6 text-secondary" %>
+            <%= link_to t('web.bulletins.index.new_bulletin'), new_bulletin_path, class: "nav-link fs-6 text-secondary" %>
+          <% end %>
         </div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -24,16 +28,12 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <% if signed_in? && current_user.admin? %>
-              <li class="nav-item">
-                <%= link_to t('admin.dashboard'), admin_root_path, class: "nav-link fs-6" %>
-              </li>
-            <% end %>
-
             <% if signed_in? %>
-              <li class="nav-item">
-                <%= link_to t('web.profiles.show.title'), profile_path, class: "nav-link fs-6" %>
-              </li>
+              <% if current_user.admin? %>
+                <li class="nav-item">
+                  <%= link_to t('admin.dashboard'), admin_root_path, class: "nav-link fs-6" %>
+                </li>
+              <% end %>
               <li class="nav-item">
                 <%= link_to t('auth.logout'), logout_path, class: "nav-link fs-6", data: { turbo_method: :delete } %>
               </li>

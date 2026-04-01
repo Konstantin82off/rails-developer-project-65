@@ -54,7 +54,7 @@ ru:
     access_denied: "Доступ запрещен"
     back_to_site: "На сайт"
     logout: "Выйти"
-    dashboard: "Панель администратора"
+    dashboard: "Админка"
 
     categories:
       create:
@@ -119,7 +119,7 @@ ru:
       index:
         title: "Объявления"
         home: "Главная"
-        new_bulletin: "Подать объявление"
+        new_bulletin: "Добавить"
         no_bulletins: "Пока нет объявлений"
         search: "Искать"
         search_label: "Искать по названию объявления"
@@ -145,7 +145,7 @@ ru:
         confirm_delete: "Вы уверены?"
 
       new:
-        title: "Новое объявление"
+        title: "Добавить объявление"
         title_field: "Заголовок"
         description: "Описание"
         category: "Категория"
@@ -183,23 +183,17 @@ ru:
     profiles:
       show:
         title: "Мои объявления"
-        new_bulletin: "Создать объявление"
+        new_bulletin: "Добавить объявление"
         no_bulletins: "У вас пока нет объявлений"
         create_first: "Создать первое объявление"
-        search: "Поиск по моим объявлениям"
-        search_placeholder: "Введите текст..."
-        title_or_description: "Название или описание"
-        category: "Категория"
-        status: "Статус"
-        all_categories: "Любая"
-        all_statuses: "Любой"
+        search_placeholder: "Искать по названию объявления"
+        all_statuses: "По состоянию"
         search_button: "Искать"
-        reset: "Сбросить"
+        reset: "Сброс"
         table:
-          title: "Заголовок"
-          category: "Категория"
-          status: "Статус"
-          date: "Дата"
+          title: "Название"
+          status: "Состояние"
+          date: "Дата создания"
           actions: "Действия"
         statuses:
           draft: "Черновик"
@@ -210,12 +204,10 @@ ru:
         actions:
           to_moderate: "На модерацию"
           archive: "В архив"
-          edit: "Редактировать"
-          delete: "Удалить"
 
   auth:
     success: "Вы успешно вошли на сайт"
-    logout: "Выйти из системы"
+    logout: "Выйти"
     failure: "Ошибка аутентификации"
     login_with_github: "Войти через GitHub"
     login: "Войти"
