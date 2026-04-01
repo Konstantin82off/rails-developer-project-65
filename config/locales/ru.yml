@@ -147,10 +147,12 @@ ru:
       new:
         title: "Добавить объявление"
         title_field: "Заголовок"
+        title_required: "не может быть пустым"
         description: "Описание"
+        description_required: "не может быть пустым"
         category: "Категория"
         select_category: "Выберите категорию"
-        image: "Изображение"
+        image: "Фотография"
         image_hint: "Максимум 5 МБ"
         submit: "Создать объявление"
         cancel: "Отмена"
