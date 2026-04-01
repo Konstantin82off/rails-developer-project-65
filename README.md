@@ -5,7 +5,7 @@
 
 [![CI](https://github.com/Konstantin82off/rails-developer-project-65/actions/workflows/ci.yml/badge.svg)](https://github.com/Konstantin82off/rails-developer-project-65/actions/workflows/ci.yml)
 
-Проект "Доска объявлений" - аналог Avito, созданный в рамках обучения на Хекслете. 
+Проект "Доска объявлений" — аналог Avito, созданный в рамках обучения на Хекслете. 
 Сервис позволяет пользователям размещать объявления, просматривать существующие и управлять ими.
 
 ## Демо
@@ -16,7 +16,7 @@
 
 - **Ruby** 4.0.2
 - **Ruby on Rails** 8.0
-- **Bootstrap** 5 (с темой пагинации bootstrap4 для совместимости)
+- **Bootstrap** 5
 - **esbuild** для сборки JavaScript
 - **PostgreSQL** (в продакшене)
 - **Rollbar** для отслеживания ошибок
@@ -65,31 +65,37 @@ cp .env.example .env
 Для работы аутентификации через GitHub необходимо:
 
 1. Зарегистрировать новое OAuth приложение на [GitHub](https://github.com/settings/developers)
-2. Указать Homepage URL: http://localhost:3000 (для разработки) или URL вашего приложения (для продакшена)
-3. Указать Authorization callback URL: http://localhost:3000/auth/github/callback
-4. Скопировать Client ID и Client Secret в файл .env
+2. Для локальной разработки указать:
+   - **Homepage URL**: http://localhost:3000
+   - **Authorization callback URL**: http://localhost:3000/auth/github/callback
+3. Для продакшена на Render указать:
+   - **Homepage URL**: https://rails-developer-project-65-kwud.onrender.com
+   - **Authorization callback URL**: https://rails-developer-project-65-kwud.onrender.com/auth/github/callback
+4. Скопировать Client ID и Client Secret в переменные окружения
 
 ## **Деплой**
 
 Проект подготовлен для деплоя на Render. Необходимые переменные окружения:
 
-- RAILS_MASTER_KEY - мастер-ключ Rails (из config/master.key)
-- ROLLBAR_ACCESS_TOKEN - токен для Rollbar
-- GITHUB_CLIENT_ID - Client ID от OAuth приложения
-- GITHUB_CLIENT_SECRET - Client Secret от OAuth приложения
-- DATABASE_URL - автоматически добавляется Render
+- RAILS_MASTER_KEY — мастер-ключ Rails (из config/master.key)
+- ROLLBAR_ACCESS_TOKEN — токен для Rollbar
+- GITHUB_CLIENT_ID — Client ID от OAuth приложения (для продакшена)
+- GITHUB_CLIENT_SECRET — Client Secret от OAuth приложения (для продакшена)
+- DATABASE_URL — автоматически добавляется Render при создании PostgreSQL базы данных
 
 ## **Особенности реализации**
 
-- Адаптивный интерфейс на Bootstrap 5
-- Отслеживание ошибок через Rollbar
-- Автоматические проверки кода через GitHub Actions
-- Аутентификация через GitHub с помощью OmniAuth
-- Makefile для автоматизации настройки проекта
-- Полная локализация на русский язык (i18n)
-- Поиск и фильтрация объявлений (ransack)
-- Пагинация (kaminari с темой bootstrap4)
-- Конечный автомат для управления статусами объявлений (AASM)
+- **Аутентификация через GitHub** с помощью OmniAuth
+- **Полная локализация** на русский язык (i18n)
+- **Управление состояниями объявлений** с помощью AASM (черновик, на модерации, опубликовано, отклонено, в архиве)
+- **Поиск и фильтрация** объявлений с помощью ransack
+- **Пагинация** с kaminari
+- **Административная панель** с управлением категориями и объявлениями (публикация, отклонение, архивация)
+- **Личный кабинет пользователя** с управлением своими объявлениями
+- **Загрузка изображений** через Active Storage
+- **Автоматические проверки кода** через GitHub Actions (RuboCop, Brakeman, тесты)
+- **Отслеживание ошибок** через Rollbar
+- **Адаптивный интерфейс** на Bootstrap 5
 
 ## **Автор**
 
