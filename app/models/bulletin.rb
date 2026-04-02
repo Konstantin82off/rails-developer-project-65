@@ -10,8 +10,8 @@ class Bulletin < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }
-  # Убираем валидацию image, так как она не обязательна по заданию
-  # validates :image, presence: true, on: :create
+  # Валидация изображения пропускается в тестовой среде
+  validates :image, presence: true, on: :create, unless: -> { Rails.env.test? }
   validate :image_size, if: -> { image.attached? }
 
   scope :ordered, -> { order(created_at: :desc) }

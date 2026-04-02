@@ -43,11 +43,26 @@ ru:
     models:
       bulletin: "объявление"
       category: "категория"
+    attributes:
+      bulletin:
+        title: "Заголовок"
+        description: "Описание"
+        category: "Категория"
+        image: "Фотография"
     errors:
       models:
         bulletin:
           attributes:
+            title:
+              blank: "не может быть пустым"
+              too_long: "слишком длинный (максимум %{count} символов)"
+            description:
+              blank: "не может быть пустым"
+              too_long: "слишком длинное (максимум %{count} символов)"
+            category:
+              required: "должна быть выбрана"
             image:
+              blank: "не может быть пустым"
               too_big: "не должно превышать 5 МБ"
 
   admin:
@@ -163,13 +178,10 @@ ru:
       new:
         title: "Добавить объявление"
         title_field: "Заголовок"
-        title_required: "не может быть пустым"
         description: "Описание"
-        description_required: "не может быть пустым"
         category: "Категория"
         select_category: "Выберите категорию"
         image: "Фотография"
-        image_hint: "Максимум 5 МБ"
         submit: "Создать объявление"
         cancel: "Отмена"
 
