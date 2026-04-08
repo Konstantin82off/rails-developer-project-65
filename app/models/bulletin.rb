@@ -12,9 +12,12 @@ class Bulletin < ApplicationRecord
                     length: { minimum: 3, maximum: 50 }
   validates :description, presence: true,
                           length: { minimum: 10, maximum: 1000 }
-  validates :image, presence: true, unless: -> { Rails.env.test? },
-                    content_type: %i[png jpg jpeg webp],
-                    size: { less_than: 5.megabytes }
+
+  if Rails.env.production?
+    validates :image, presence: true,
+                      content_type: %i[png jpg jpeg webp],
+                      size: { less_than: 5.megabytes }
+  end
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :published, -> { where(state: :published) }
