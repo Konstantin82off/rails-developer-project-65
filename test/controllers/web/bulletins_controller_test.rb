@@ -104,7 +104,7 @@ module Web
       assert_equal 'under_moderation', @draft_bulletin.state
     end
 
-    test 'should archive when owner' do
+    test 'should archive' do
       sign_in(@user)
       @bulletin.update(state: 'published')
       attach_image_to(@bulletin)
