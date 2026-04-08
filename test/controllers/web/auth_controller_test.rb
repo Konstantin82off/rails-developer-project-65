@@ -29,5 +29,24 @@ module Web
       assert user
       assert signed_in?
     end
+
+    test 'logout' do
+      auth_hash = {
+        provider: 'github',
+        uid: '12345',
+        info: {
+          email: 'logout_test@example.com',
+          name: 'Logout Test'
+        }
+      }
+
+      OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
+      get callback_auth_url('github')
+      assert signed_in?
+
+      delete logout_path
+      assert_redirected_to root_path
+      assert_not signed_in?
+    end
   end
 end
