@@ -50,6 +50,9 @@ gem 'pundit'
 # Error tracking
 gem 'rollbar'
 
+# Active Storage validations
+gem 'active_storage_validations', '~> 1.0'
+
 group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem 'brakeman', require: false

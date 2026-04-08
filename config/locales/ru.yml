@@ -38,6 +38,7 @@ ru:
   errors:
     messages:
       prohibited: "Не удалось сохранить %{model}: %{count} ошибок"
+      record_invalid: "Возникли ошибки: %{errors}"
 
   activerecord:
     models:
@@ -54,16 +55,19 @@ ru:
         bulletin:
           attributes:
             title:
-              blank: "Не более 50 символов, обязательное поле"
+              blank: "не может быть пустым"
+              too_short: "слишком короткий (минимум %{count} символа)"
               too_long: "слишком длинный (максимум %{count} символов)"
             description:
-              blank: "Ограничено 1000 символов, обязательное поле"
+              blank: "не может быть пустым"
+              too_short: "слишком короткое (минимум %{count} символов)"
               too_long: "слишком длинное (максимум %{count} символов)"
             category:
               required: "должна быть выбрана"
             image:
-              blank: "Не более 5 Мб. Обязательное поле"
-              too_big: "не должна превышать 5 Мб"
+              blank: "не может быть пустым"
+              too_big: "не должна превышать 5 МБ"
+              content_type: "имеет недопустимый формат (допустимы PNG, JPG, JPEG)"
 
   admin:
     access_denied: "Доступ запрещен"

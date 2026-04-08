@@ -13,6 +13,7 @@ module ActiveSupport
   end
 end
 
+# rubocop:disable Style/OneClassPerFile
 ActiveSupport.on_load(:action_dispatch_integration_test) do
   def sign_in(user, _options = {})
     auth_hash = {
@@ -24,7 +25,7 @@ ActiveSupport.on_load(:action_dispatch_integration_test) do
       }
     }
 
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth_hash)
 
     get callback_auth_url('github')
   end
@@ -39,3 +40,15 @@ ActiveSupport.on_load(:action_dispatch_integration_test) do
     @current_user = User.find_by(id: session[:user_id])
   end
 end
+
+# Подключаем хелперы
+Rails.root.glob('test/support/*.rb').each { |file| require file }
+
+class ActionDispatch::IntegrationTest
+  include ImageHelper
+end
+
+class ActiveSupport::TestCase
+  include ImageHelper
+end
+# rubocop:enable Style/OneClassPerFile
