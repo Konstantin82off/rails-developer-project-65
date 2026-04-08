@@ -21,9 +21,8 @@ module Web
         assert_response :redirect
       end
 
-      test 'should publish' do
+      test 'should publish bulletin' do
         sign_in(@admin)
-        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch publish_admin_bulletin_path(@bulletin)
@@ -33,9 +32,8 @@ module Web
         assert @bulletin.published?
       end
 
-      test 'should reject' do
+      test 'should reject bulletin' do
         sign_in(@admin)
-        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch reject_admin_bulletin_path(@bulletin)
@@ -45,9 +43,8 @@ module Web
         assert @bulletin.rejected?
       end
 
-      test 'should archive' do
+      test 'should archive bulletin' do
         sign_in(@admin)
-        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch archive_admin_bulletin_path(@bulletin)

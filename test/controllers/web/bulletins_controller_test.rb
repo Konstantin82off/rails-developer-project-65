@@ -60,59 +60,56 @@ module Web
           }
         }
       end
+
       assert_redirected_to '/auth/github'
     end
 
     test 'should get edit when owner' do
-      sign_in(@user)
-      attach_image_to(@draft_bulletin)
-
-      get edit_bulletin_path(@draft_bulletin)
+      sign_in(@bulletin.user)
+      attach_image_to(@bulletin)
+      get edit_bulletin_path(@bulletin)
       assert_response :success
     end
 
     test 'should not get edit when not owner' do
       sign_in(@other_user)
-      get edit_bulletin_path(@draft_bulletin)
+      get edit_bulletin_path(@bulletin)
       assert_redirected_to root_path
     end
 
     test 'should update bulletin when owner' do
-      sign_in(@user)
-      attach_image_to(@draft_bulletin)
+      sign_in(@bulletin.user)
+      attach_image_to(@bulletin)
 
-      patch bulletin_path(@draft_bulletin), params: {
-        bulletin: {
-          title: 'Updated Title',
-          description: 'Updated Description ' * 10,
-          category_id: @category.id,
-          image: image_file
-        }
+      patch bulletin_path(@bulletin), params: {
+        bulletin: { title: 'Updated Title', image: image_file }
       }
-      assert_redirected_to bulletin_path(@draft_bulletin)
-      @draft_bulletin.reload
-      assert_equal 'Updated Title', @draft_bulletin.title
+
+      assert_redirected_to bulletin_path(@bulletin)
+      @bulletin.reload
+      assert_equal 'Updated Title', @bulletin.title
     end
 
     test 'should send to moderate when owner' do
-      sign_in(@user)
+      sign_in(@draft_bulletin.user)
       attach_image_to(@draft_bulletin)
 
       patch to_moderate_bulletin_path(@draft_bulletin)
+
       assert_redirected_to profile_path
       @draft_bulletin.reload
-      assert_equal 'under_moderation', @draft_bulletin.state
+      assert @draft_bulletin.under_moderation?
     end
 
-    test 'should archive' do
-      sign_in(@user)
-      @bulletin.update(state: 'published')
-      attach_image_to(@bulletin)
+    test 'should archive when owner' do
+      sign_in(@draft_bulletin.user)
+      attach_image_to(@draft_bulletin)
 
-      patch archive_bulletin_path(@bulletin)
+      patch archive_bulletin_path(@draft_bulletin)
+
       assert_redirected_to profile_path
-      @bulletin.reload
-      assert_equal 'archived', @bulletin.state
+      @draft_bulletin.reload
+      assert @draft_bulletin.archived?
     end
   end
 end
