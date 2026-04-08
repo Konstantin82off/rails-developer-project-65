@@ -23,6 +23,7 @@ module Web
 
       test 'should publish' do
         sign_in(@admin)
+        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch publish_admin_bulletin_path(@bulletin)
@@ -34,6 +35,7 @@ module Web
 
       test 'should reject' do
         sign_in(@admin)
+        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch reject_admin_bulletin_path(@bulletin)
@@ -45,6 +47,7 @@ module Web
 
       test 'should archive' do
         sign_in(@admin)
+        @bulletin.save! if @bulletin.new_record?
         attach_image_to(@bulletin)
 
         patch archive_admin_bulletin_path(@bulletin)

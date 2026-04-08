@@ -3,6 +3,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require_relative 'support/image_helper'
 
 OmniAuth.config.test_mode = true
 
@@ -40,9 +41,6 @@ ActiveSupport.on_load(:action_dispatch_integration_test) do
     @current_user = User.find_by(id: session[:user_id])
   end
 end
-
-# Подключаем хелперы
-Rails.root.glob('test/support/*.rb').each { |file| require file }
 
 class ActionDispatch::IntegrationTest
   include ImageHelper
