@@ -67,7 +67,7 @@ ru:
             image:
               blank: "не может быть пустым"
               too_big: "не должна превышать 5 МБ"
-              content_type: "имеет недопустимый формат (допустимы PNG, JPG, JPEG)"
+              content_type: "имеет недопустимый формат (допустимы PNG, JPG, JPEG, WEBP)"
 
   admin:
     access_denied: "Доступ запрещен"

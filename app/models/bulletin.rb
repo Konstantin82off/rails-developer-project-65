@@ -13,7 +13,7 @@ class Bulletin < ApplicationRecord
   validates :description, presence: true,
                           length: { minimum: 10, maximum: 1000 }
   validates :image, presence: true,
-                    content_type: %i[png jpg jpeg],
+                    content_type: %i[png jpg jpeg webp],
                     size: { less_than: 5.megabytes }
 
   scope :ordered, -> { order(created_at: :desc) }
