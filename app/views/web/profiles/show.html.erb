@@ -72,14 +72,6 @@
                         form_class: 'd-inline',
                         data: { confirm: t('common.confirm') } %>
                   <% end %>
-
-                  <% if bulletin.draft? || bulletin.rejected? %>
-                    <%= button_to t('web.profiles.show.actions.delete'), bulletin_path(bulletin),
-                        method: :delete,
-                        class: 'btn btn-sm btn-link text-secondary p-0',
-                        form_class: 'd-inline',
-                        data: { confirm: t('common.confirm') } %>
-                  <% end %>
               </tr>
             <% end %>
           </tbody>
