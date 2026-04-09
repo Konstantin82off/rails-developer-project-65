@@ -23,6 +23,7 @@ module Web
 
       test 'should publish bulletin' do
         sign_in(@admin)
+        attach_test_image(@bulletin)
 
         patch publish_admin_bulletin_path(@bulletin)
 
@@ -33,6 +34,7 @@ module Web
 
       test 'should reject bulletin' do
         sign_in(@admin)
+        attach_test_image(@bulletin)
 
         patch reject_admin_bulletin_path(@bulletin)
 
@@ -43,6 +45,7 @@ module Web
 
       test 'should archive bulletin' do
         sign_in(@admin)
+        attach_test_image(@bulletin)
 
         patch archive_admin_bulletin_path(@bulletin)
 

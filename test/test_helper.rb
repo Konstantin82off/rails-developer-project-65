@@ -25,7 +25,7 @@ ActiveSupport.on_load(:action_dispatch_integration_test) do
       }
     }
 
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth_hash)
 
     get callback_auth_url('github')
   end
@@ -44,11 +44,18 @@ end
 # Подключаем хелперы
 Rails.root.glob('test/support/*.rb').each { |file| require file }
 
-class ActionDispatch::IntegrationTest
-  include ImageHelper
+# Метод для прикрепления тестового изображения
+def attach_test_image(bulletin)
+  image_path = Rails.root.join('test/fixtures/files/test_image.jpg')
+  bulletin.image.attach(
+    io: image_path.open,
+    filename: 'test_image.jpg',
+    content_type: 'image/jpeg'
+  )
+  bulletin.save!
 end
 
-class ActiveSupport::TestCase
-  include ImageHelper
+class ActionDispatch::IntegrationTest
+  include ActionDispatch::TestProcess
 end
 # rubocop:enable Style/OneClassPerFile
