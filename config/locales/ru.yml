@@ -38,6 +38,7 @@ ru:
   errors:
     messages:
       prohibited: "Не удалось сохранить %{model}: %{count} ошибок"
+      record_invalid: "Возникли ошибки: %{errors}"
 
   activerecord:
     models:
