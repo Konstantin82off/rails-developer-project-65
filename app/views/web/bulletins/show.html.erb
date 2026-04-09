@@ -44,10 +44,6 @@
                 <% if @bulletin.may_archive? %>
                   <%= button_to t('web.bulletins.show.archive'), archive_bulletin_path(@bulletin), method: :patch, class: 'btn btn-outline-warning', data: { confirm: t('common.confirm') } %>
                 <% end %>
-
-                <%= button_to t('common.delete'), bulletin_path(@bulletin), method: :delete,
-                    class: 'btn btn-outline-danger',
-                    data: { confirm: t('common.confirm') } %>
               <% end %>
             </div>
           </div>
