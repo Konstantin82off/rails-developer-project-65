@@ -31,6 +31,9 @@ gem 'bootsnap', require: false
 gem 'image_processing', '~> 1.2'
 gem 'mini_magick', '~> 4.11'
 
+# Active Storage validations
+gem 'active_storage_validations', '~> 1.0'
+
 # State machine for bulletins
 gem 'aasm'
 
