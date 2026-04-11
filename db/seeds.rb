@@ -47,7 +47,7 @@ categories = categories_data.map do |data|
   Category.find_or_create_by!(name: data[:name])
 end
 
-# Создаем объявления из фикстур
+# Создаем объявления из фикстур (только если их нет)
 bulletins_from_fixtures = [
   { title: 'Продам Toyota Camry', description: 'Отличный автомобиль, 2020 года, в хорошем состоянии', user: users.first, category: categories.find { |c| c.name == 'Автомобили' }, state: 'published' },
   { title: 'iPhone 14 Pro Max', description: 'Новый, в упаковке, гарантия', user: users.second, category: categories.find { |c| c.name == 'Электроника' }, state: 'published' },
@@ -58,29 +58,26 @@ bulletins_from_fixtures = [
 ]
 
 bulletins_from_fixtures.each do |data|
-  bulletin = Bulletin.new(
-    title: data[:title],
-    description: data[:description],
-    user: data[:user],
-    category: data[:category],
-    state: data[:state]
-  )
-  ImageHelper.attach_test_image(bulletin)
-  bulletin.save!
+  bulletin = Bulletin.find_or_create_by!(title: data[:title]) do |b|
+    b.description = data[:description]
+    b.user = data[:user]
+    b.category = data[:category]
+    b.state = data[:state]
+  end
+  # Прикрепляем изображение только если его ещё нет
+  ImageHelper.attach_test_image(bulletin) unless bulletin.image.attached?
 end
 
-# Создаем дополнительные объявления для пагинации (25 штук)
+# Создаем дополнительные объявления для пагинации (только если их меньше 30)
 if Bulletin.count < 30
   25.times do |i|
-    bulletin = Bulletin.new(
-      title: "Тестовое объявление #{i + 1}",
-      description: "Описание тестового объявления #{i + 1}. " + ('x' * 50),
-      user: users.sample,
-      category: categories.sample,
-      state: 'published'
-    )
-    ImageHelper.attach_test_image(bulletin)
-    bulletin.save!
+    bulletin = Bulletin.find_or_create_by!(title: "Тестовое объявление #{i + 1}") do |b|
+      b.description = "Описание тестового объявления #{i + 1}. " + ('x' * 50)
+      b.user = users.sample
+      b.category = categories.sample
+      b.state = 'published'
+    end
+    ImageHelper.attach_test_image(bulletin) unless bulletin.image.attached?
   end
 end
 
