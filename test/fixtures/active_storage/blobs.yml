@@ -1,0 +1,8 @@
+test_image:
+  key: test_image_key
+  filename: test_image.jpg
+  content_type: image/jpeg
+  metadata: {}
+  service_name: test
+  byte_size: 557
+  checksum: BNO3mS4PCO27KMHfrDL4eA==
