@@ -40,8 +40,9 @@ module Web
         post bulletins_path, params: {
           bulletin: {
             title: 'New Bulletin',
-            description: 'Description',
-            category_id: @category.id
+            description: 'Description Description Description',
+            category_id: @category.id,
+            image: image_file
           }
         }
       end
@@ -65,6 +66,7 @@ module Web
 
     test 'should get edit when owner' do
       sign_in(@bulletin.user)
+      attach_image_to(@bulletin)
       get edit_bulletin_path(@bulletin)
       assert_response :success
     end
@@ -77,9 +79,10 @@ module Web
 
     test 'should update bulletin when owner' do
       sign_in(@bulletin.user)
+      attach_image_to(@bulletin)
 
       patch bulletin_path(@bulletin), params: {
-        bulletin: { title: 'Updated Title' }
+        bulletin: { title: 'Updated Title', image: image_file }
       }
 
       assert_redirected_to bulletin_path(@bulletin)
@@ -89,6 +92,7 @@ module Web
 
     test 'should send to moderate when owner' do
       sign_in(@draft_bulletin.user)
+      attach_image_to(@draft_bulletin)
 
       patch to_moderate_bulletin_path(@draft_bulletin)
 
@@ -99,6 +103,7 @@ module Web
 
     test 'should archive when owner' do
       sign_in(@draft_bulletin.user)
+      attach_image_to(@draft_bulletin)
 
       patch archive_bulletin_path(@draft_bulletin)
 

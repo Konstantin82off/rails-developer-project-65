@@ -3,6 +3,7 @@
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
+require_relative 'support/image_helper'
 
 OmniAuth.config.test_mode = true
 
@@ -25,7 +26,7 @@ ActiveSupport.on_load(:action_dispatch_integration_test) do
       }
     }
 
-    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash::InfoHash.new(auth_hash)
+    OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(auth_hash)
 
     get callback_auth_url('github')
   end

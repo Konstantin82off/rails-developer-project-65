@@ -39,9 +39,9 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <a href="/auth/github" class="nav-link fs-6">
+                <%= button_to '/auth/github', method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
                   <i class="bi bi-github me-1"></i> <%= t('auth.login') %>
-                </a>
+                <% end %>
               </li>
             <% end %>
           </ul>

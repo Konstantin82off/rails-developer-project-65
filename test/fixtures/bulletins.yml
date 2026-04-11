@@ -35,7 +35,7 @@ under_moderation:
 draft:
   title: Черновик
   description: Черновик объявления
-  user: two
+  user: one
   category: two
   state: draft
   created_at: <%= 2.hours.ago %>
