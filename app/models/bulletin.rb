@@ -11,8 +11,9 @@ class Bulletin < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }
   # Валидация изображения пропускается в тестовой среде
-  validates :image, presence: true, on: :create, unless: -> { Rails.env.test? }
-  validate :image_size, if: -> { image.attached? }
+  validates :image, presence: true, on: :create, unless: -> { Rails.env.test? },
+                    content_type: %i[png jpg jpeg],
+                    size: { less_than: 5.megabytes }
 
   scope :ordered, -> { order(created_at: :desc) }
   scope :published, -> { where(state: :published) }
@@ -47,13 +48,5 @@ class Bulletin < ApplicationRecord
 
   def self.ransackable_associations(_auth_object = nil)
     %w[category user]
-  end
-
-  private
-
-  def image_size
-    return unless image.byte_size > 5.megabytes
-
-    errors.add(:image, 'не должно превышать 5 МБ')
   end
 end
