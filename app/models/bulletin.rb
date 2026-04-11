@@ -12,7 +12,7 @@ class Bulletin < ApplicationRecord
   validates :description, presence: true, length: { maximum: 1000 }
   # Валидация изображения пропускается в тестовой среде
   validates :image, presence: true, on: :create, unless: -> { Rails.env.test? },
-                    content_type: %i[png jpg jpeg],
+                    content_type: %i[png jpg jpeg webp],
                     size: { less_than: 5.megabytes }
 
   scope :ordered, -> { order(created_at: :desc) }
