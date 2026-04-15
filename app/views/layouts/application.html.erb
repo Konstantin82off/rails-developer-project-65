@@ -43,6 +43,13 @@
                   <i class="bi bi-github me-1"></i> <%= t('auth.login') %>
                 <% end %>
               </li>
+              <% if Rails.env.development? %>
+                <li class="nav-item">
+                  <%= button_to auth_request_path('developer'), method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
+                    🔧 Dev Login
+                  <% end %>
+                </li>
+              <% end %>
             <% end %>
           </ul>
         </div>
