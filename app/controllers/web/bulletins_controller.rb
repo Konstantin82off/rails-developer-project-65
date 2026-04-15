@@ -2,9 +2,9 @@
 
 module Web
   class BulletinsController < Web::ApplicationController
-    before_action :authenticate_user!, only: %i[new create edit update to_moderate archive destroy]
-    before_action :set_bulletin, only: %i[show edit update to_moderate archive destroy]
-    before_action :authorize_bulletin, only: %i[edit update to_moderate archive destroy]
+    before_action :authenticate_user!, only: %i[new create edit update to_moderate archive]
+    before_action :set_bulletin, only: %i[show edit update to_moderate archive]
+    before_action :authorize_bulletin, only: %i[edit update to_moderate archive]
 
     def index
       @q = Bulletin.published.ransack(params[:q])
@@ -34,14 +34,6 @@ module Web
         redirect_to @bulletin, notice: t('.success')
       else
         render :edit, status: :unprocessable_content
-      end
-    end
-
-    def destroy
-      if @bulletin.destroy
-        redirect_to profile_path, notice: t('.success')
-      else
-        redirect_to profile_path, alert: t('.failure')
       end
     end
 
