@@ -26,6 +26,8 @@ module AuthConcern
   end
 
   def authenticate_user!
-    redirect_to auth_request_path('github') unless signed_in?
+    return if signed_in?
+
+    redirect_back_or_to root_path
   end
 end

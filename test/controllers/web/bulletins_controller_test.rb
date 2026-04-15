@@ -37,7 +37,7 @@ module Web
 
     test 'should not get new when not signed in' do
       get new_bulletin_path
-      assert_redirected_to '/auth/github'
+      assert_redirected_to root_path
     end
 
     test 'should create bulletin when signed in' do
@@ -68,7 +68,7 @@ module Web
         }
       end
 
-      assert_redirected_to '/auth/github'
+      assert_redirected_to root_path
     end
 
     test 'should get edit when owner' do
