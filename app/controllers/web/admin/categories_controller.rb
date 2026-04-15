@@ -2,7 +2,7 @@
 
 class Web::Admin::CategoriesController < Web::Admin::ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.order(:name).page(params[:page]).per(10)
     authorize Category
   end
 

@@ -10,7 +10,7 @@
   <div class="table-responsive">
     <table class="table table-striped table-hover">
       <thead>
-         <tr>
+        <tr>
           <th><%= t('admin.categories.index.id') %></th>
           <th><%= t('admin.categories.index.name') %></th>
           <th><%= t('admin.categories.index.actions') %></th>
@@ -28,10 +28,14 @@
                   class: 'btn btn-sm btn-link text-danger p-0',
                   form_class: 'd-inline',
                   data: { confirm: t('admin.categories.index.confirm_delete') } %>
-            </td>
-          </tr>
+             </td>
+           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+
+  <div class="mt-4">
+    <%= paginate @categories, theme: 'bootstrap4' %>
   </div>
 </div>
