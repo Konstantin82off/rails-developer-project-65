@@ -12,6 +12,13 @@ module Web
       @draft_bulletin = bulletins(:draft)
     end
 
+    def image_file
+      Rack::Test::UploadedFile.new(
+        Rails.root.join('test/fixtures/files/test_image.jpg'),
+        'image/jpeg'
+      )
+    end
+
     test 'should get index' do
       get root_path
       assert_response :success
@@ -40,8 +47,9 @@ module Web
         post bulletins_path, params: {
           bulletin: {
             title: 'New Bulletin',
-            description: 'Description',
-            category_id: @category.id
+            description: 'Description Description Description',
+            category_id: @category.id,
+            image: image_file
           }
         }
       end
@@ -79,7 +87,11 @@ module Web
       sign_in(@bulletin.user)
 
       patch bulletin_path(@bulletin), params: {
-        bulletin: { title: 'Updated Title' }
+        bulletin: {
+          title: 'Updated Title',
+          description: 'Updated Description ' * 10,
+          image: image_file
+        }
       }
 
       assert_redirected_to bulletin_path(@bulletin)
