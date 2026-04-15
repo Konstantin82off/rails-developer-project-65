@@ -12,6 +12,15 @@ class BulletinTest < ActiveSupport::TestCase
       user: @user,
       category: @category
     )
+    attach_image_to(@bulletin)
+  end
+
+  def attach_image_to(bulletin)
+    bulletin.image.attach(
+      io: Rails.root.join('test/fixtures/files/test_image.jpg').open,
+      filename: 'test_image.jpg',
+      content_type: 'image/jpeg'
+    )
   end
 
   test 'should be valid' do
