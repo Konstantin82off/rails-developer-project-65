@@ -1,16 +1,14 @@
 # frozen_string_literal: true
 
-module Web
-  class ApplicationController < ::ApplicationController
-    include AuthConcern
-    include Pundit::Authorization
+class Web::ApplicationController < ApplicationController
+  include AuthConcern
+  include Pundit::Authorization
 
-    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-    private
+  private
 
-    def user_not_authorized
-      redirect_to root_path, alert: t('common.access_denied')
-    end
+  def user_not_authorized
+    redirect_to root_path, alert: t('common.access_denied')
   end
 end
