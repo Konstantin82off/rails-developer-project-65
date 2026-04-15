@@ -3,21 +3,24 @@
 module Web
   class BulletinsController < Web::ApplicationController
     before_action :authenticate_user!, only: %i[new create edit update to_moderate archive]
-    before_action :set_bulletin, only: %i[show edit update to_moderate archive]
-    before_action :authorize_bulletin, only: %i[edit update to_moderate archive]
 
     def index
       @q = Bulletin.published.ransack(params[:q])
       @bulletins = @q.result.order(created_at: :desc).page(params[:page])
     end
 
-    def show; end
+    def show
+      @bulletin = Bulletin.find(params[:id])
+    end
 
     def new
       @bulletin = Bulletin.new
     end
 
-    def edit; end
+    def edit
+      @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
+    end
 
     def create
       @bulletin = current_user.bulletins.build(bulletin_params)
@@ -30,6 +33,9 @@ module Web
     end
 
     def update
+      @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
+
       if @bulletin.update(bulletin_params)
         redirect_to @bulletin, notice: t('.success')
       else
@@ -38,6 +44,9 @@ module Web
     end
 
     def to_moderate
+      @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
+
       if @bulletin.may_to_moderate?
         @bulletin.to_moderate!
         redirect_to profile_path, notice: t('.success')
@@ -47,6 +56,9 @@ module Web
     end
 
     def archive
+      @bulletin = Bulletin.find(params[:id])
+      authorize @bulletin
+
       if @bulletin.may_archive?
         @bulletin.archive!
         redirect_to profile_path, notice: t('.success')
@@ -56,14 +68,6 @@ module Web
     end
 
     private
-
-    def set_bulletin
-      @bulletin = Bulletin.find(params[:id])
-    end
-
-    def authorize_bulletin
-      authorize @bulletin
-    end
 
     def bulletin_params
       params.expect(bulletin: %i[title description category_id image])

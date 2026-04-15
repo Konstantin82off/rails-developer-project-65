@@ -3,8 +3,6 @@
 module Web
   module Admin
     class CategoriesController < Web::Admin::ApplicationController
-      before_action :set_category, only: %i[edit update destroy]
-
       def index
         @categories = Category.all
         authorize Category
@@ -16,6 +14,7 @@ module Web
       end
 
       def edit
+        @category = Category.find(params[:id])
         authorize @category
       end
 
@@ -31,6 +30,7 @@ module Web
       end
 
       def update
+        @category = Category.find(params[:id])
         authorize @category
 
         if @category.update(category_params)
@@ -41,6 +41,7 @@ module Web
       end
 
       def destroy
+        @category = Category.find(params[:id])
         authorize @category
 
         if @category.bulletins.exists?
@@ -52,10 +53,6 @@ module Web
       end
 
       private
-
-      def set_category
-        @category = Category.find(params[:id])
-      end
 
       def category_params
         params.expect(category: [:name])
