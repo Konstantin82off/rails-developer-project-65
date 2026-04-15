@@ -7,9 +7,13 @@ module Web
       return redirect_to(root_path, alert: t('auth.failure')) if auth_hash.nil?
 
       user = find_or_create_user(auth_hash)
-      sign_in(user)
 
-      redirect_to root_path, notice: t('auth.success')
+      if user.persisted?
+        sign_in(user)
+        redirect_to root_path, notice: t('auth.success')
+      else
+        redirect_to root_path, alert: t('auth.failure')
+      end
     end
 
     def destroy
