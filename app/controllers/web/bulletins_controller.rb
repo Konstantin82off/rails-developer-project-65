@@ -2,11 +2,10 @@
 
 module Web
   class BulletinsController < Web::ApplicationController
-    before_action :authenticate_user!, only: %i[new create edit update to_moderate archive]
-
     def index
       @q = Bulletin.published.ransack(params[:q])
       @bulletins = @q.result.order(created_at: :desc).page(params[:page])
+      @categories = Category.all
     end
 
     def show
@@ -14,15 +13,24 @@ module Web
     end
 
     def new
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = Bulletin.new
     end
 
     def edit
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = Bulletin.find(params[:id])
       authorize @bulletin
     end
 
     def create
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = current_user.bulletins.build(bulletin_params)
 
       if @bulletin.save
@@ -33,6 +41,9 @@ module Web
     end
 
     def update
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = Bulletin.find(params[:id])
       authorize @bulletin
 
@@ -44,6 +55,9 @@ module Web
     end
 
     def to_moderate
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = Bulletin.find(params[:id])
       authorize @bulletin
 
@@ -56,6 +70,9 @@ module Web
     end
 
     def archive
+      authenticate_user!
+      return unless signed_in?
+
       @bulletin = Bulletin.find(params[:id])
       authorize @bulletin
 

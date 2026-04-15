@@ -12,7 +12,7 @@
       </div>
       <div class="col-12 col-md-4">
         <%= f.collection_select :category_id_eq,
-            Category.all,
+            @categories,
             :id,
             :name,
             { include_blank: true },
