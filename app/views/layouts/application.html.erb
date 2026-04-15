@@ -39,7 +39,7 @@
               </li>
             <% else %>
               <li class="nav-item">
-                <%= button_to '/auth/github', method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
+                <%= button_to auth_request_path('github'), method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
                   <i class="bi bi-github me-1"></i> <%= t('auth.login') %>
                 <% end %>
               </li>
