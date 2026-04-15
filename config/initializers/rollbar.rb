@@ -73,7 +73,7 @@ Rollbar.configure do |config|
   # Add person (user) information for when authentication is added
   config.person_method = 'current_user'
   config.person_id_method = 'id'
-  config.person_username_method = 'username'
+  config.person_username_method = 'name'
   config.person_email_method = 'email'
 
   # === PERFORMANCE (OPTIONAL, CAN ENABLE LATER) ===
