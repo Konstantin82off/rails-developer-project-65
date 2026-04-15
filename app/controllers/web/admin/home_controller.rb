@@ -4,7 +4,8 @@ module Web
   module Admin
     class HomeController < Web::Admin::ApplicationController
       def index
-        redirect_to admin_bulletins_path
+        @q = Bulletin.where(state: :under_moderation).ransack(params[:q])
+        @bulletins = @q.result.order(created_at: :desc).page(params[:page])
       end
     end
   end
