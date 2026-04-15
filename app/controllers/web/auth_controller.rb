@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Web
-  class AuthController < ::ApplicationController
+  class AuthController < Web::ApplicationController
     skip_before_action :verify_authenticity_token, only: :callback
 
     def callback
@@ -11,7 +11,6 @@ module Web
       user = find_or_create_user(auth_hash)
       session[:user_id] = user.id
 
-      # Логирование для проверки статуса администратора
       Rails.logger.info '=== USER LOGIN ==='
       Rails.logger.info "User email: #{user.email}"
       Rails.logger.info "User admin: #{user.admin?}"
