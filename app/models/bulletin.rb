@@ -11,7 +11,7 @@ class Bulletin < ApplicationRecord
   validates :title, presence: true, length: { maximum: 50 }
   validates :description, presence: true, length: { maximum: 1000 }
   # Валидация изображения пропускается в тестовой среде
-  validates :image, presence: true, on: :create, unless: -> { Rails.env.test? },
+  validates :image, presence: true, unless: -> { Rails.env.test? },
                     content_type: %i[png jpg jpeg webp],
                     size: { less_than: 5.megabytes }
 
