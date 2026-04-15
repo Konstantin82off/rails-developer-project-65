@@ -15,16 +15,16 @@ Rails.application.routes.draw do
     post 'auth/:provider', to: 'auth#request', as: :auth_request
     get 'auth/:provider/callback', to: 'auth#callback', as: :callback_auth
     delete 'logout', to: 'auth#destroy'
-  end
 
-  namespace :admin, module: 'web/admin', as: :admin do
-    root to: 'home#index'
-    resources :categories
-    resources :bulletins, only: :index do
-      member do
-        patch :publish
-        patch :reject
-        patch :archive
+    namespace :admin do
+      root to: 'home#index'
+      resources :categories
+      resources :bulletins, only: :index do
+        member do
+          patch :publish
+          patch :reject
+          patch :archive
+        end
       end
     end
   end
