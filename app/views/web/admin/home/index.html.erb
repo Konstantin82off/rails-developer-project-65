@@ -1,0 +1,38 @@
+<div class="border rounded shadow p-4 mb-4 bg-white">
+  <h1 class="h3 mb-4 pb-2 border-bottom"><%= t('admin.sidebar.moderation') %></h1>
+
+  <% if @bulletins.any? %>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+            <th><%= t('admin.bulletins.index.title_field') %></th>
+            <th><%= t('admin.bulletins.index.created_at_field') %></th>
+            <th><%= t('admin.bulletins.index.actions') %></th>
+          </thead>
+        <tbody>
+          <% @bulletins.each do |bulletin| %>
+            <tr>
+              <td><%= link_to bulletin.title, bulletin_path(bulletin), class: 'text-primary' %></td>
+              <td><%= l(bulletin.created_at, format: :short) %></td>
+              <td class="actions-cell">
+                <div class="d-flex flex-nowrap gap-2">
+                  <%= button_to t('admin.bulletins.index.publish'), publish_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_publish') }, class: 'btn btn-sm btn-link text-primary p-0' %>
+                  <%= button_to t('admin.bulletins.index.reject'), reject_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_reject') }, class: 'btn btn-sm btn-link text-primary p-0' %>
+                  <%= button_to t('admin.bulletins.index.archive'), archive_admin_bulletin_path(bulletin), method: :patch, data: { confirm: t('admin.bulletins.index.confirm_archive') }, class: 'btn btn-sm btn-link text-danger p-0' %>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-4">
+      <%= paginate @bulletins, theme: 'bootstrap4' %>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <%= t('admin.bulletins.index.no_bulletins') %>
+    </div>
+  <% end %>
+</div>
