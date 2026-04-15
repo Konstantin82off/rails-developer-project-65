@@ -37,9 +37,7 @@ make setup
 
 ### **Ручная настройка**
 
-bash
-
-```javascript
+```bash
 # Клонировать репозиторий
 git clone https://github.com/Konstantin82off/rails-developer-project-65.git
 cd rails-developer-project-65
@@ -60,20 +58,34 @@ cp .env.example .env
 
 После запуска приложение будет доступно по адресу: [http://localhost:3000](http://localhost:3000/)
 
-## **Настройка GitHub OAuth**
+## Локальная разработка без GitHub
+
+Для локальной разработки доступен вход без GitHub: нажмите на кнопку **"🔧 Dev Login"** на главной странице или перейдите на /auth/developer и введите любой email.
+
+Чтобы стать администратором, выполните в консоли:
+
+```bash
+rails console
+User.find_or_create_by!(email: 'admin@example.com') do |u|
+  u.name = 'Admin'
+  u.admin = true
+end
+```
+
+## Настройка GitHub OAuth
 
 Для работы аутентификации через GitHub необходимо:
 
 1. Зарегистрировать новое OAuth приложение на [GitHub](https://github.com/settings/developers)
 2. Для локальной разработки указать:
-   - **Homepage URL**: http://localhost:3000
-   - **Authorization callback URL**: http://localhost:3000/auth/github/callback
+   - **Homepage URL**: [http://localhost:3000](http://localhost:3000/)
+   - **Authorization callback URL**: <http://localhost:3000/auth/github/callback>
 3. Для продакшена на Render указать:
-   - **Homepage URL**: https://rails-developer-project-65-kwud.onrender.com
-   - **Authorization callback URL**: https://rails-developer-project-65-kwud.onrender.com/auth/github/callback
+   - **Homepage URL**: [https://rails-developer-project-65-kwud.onrender.com](https://rails-developer-project-65-kwud.onrender.com/)
+   - **Authorization callback URL**: <https://rails-developer-project-65-kwud.onrender.com/auth/github/callback>
 4. Скопировать Client ID и Client Secret в переменные окружения
 
-## **Деплой**
+## Деплой
 
 Проект подготовлен для деплоя на Render. Необходимые переменные окружения:
 
@@ -83,9 +95,10 @@ cp .env.example .env
 - GITHUB_CLIENT_SECRET — Client Secret от OAuth приложения (для продакшена)
 - DATABASE_URL — автоматически добавляется Render при создании PostgreSQL базы данных
 
-## **Особенности реализации**
+## Особенности реализации
 
 - **Аутентификация через GitHub** с помощью OmniAuth
+- **Локальная аутентификация** через developer провайдер (только для разработки)
 - **Полная локализация** на русский язык (i18n)
 - **Управление состояниями объявлений** с помощью AASM (черновик, на модерации, опубликовано, отклонено, в архиве)
 - **Поиск и фильтрация** объявлений с помощью ransack
