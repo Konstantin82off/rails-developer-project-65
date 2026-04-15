@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 module Web
-  class ProfilesController < ApplicationController
+  class ProfilesController < Web::ApplicationController
     def show
-      unless signed_in?
-        redirect_to '/auth/github'
-        return
-      end
+      authenticate_user!
+      return unless signed_in?
 
       @q = current_user.bulletins.ransack(params[:q])
       @bulletins = @q.result.ordered.page(params[:page]).per(10)

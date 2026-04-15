@@ -2,24 +2,15 @@
 
 module Web
   class ApplicationController < ::ApplicationController
-    helper_method :current_user, :signed_in?
+    include AuthConcern
+    include Pundit::Authorization
+
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
     private
 
-    def current_user
-      return @current_user if defined?(@current_user)
-
-      @current_user = User.find_by(id: session[:user_id])
-    end
-
-    def signed_in?
-      current_user.present?
-    end
-
-    def authenticate_user!
-      return if signed_in?
-
-      redirect_to '/auth/github'
+    def user_not_authorized
+      redirect_to root_path, alert: t('common.access_denied')
     end
   end
 end
