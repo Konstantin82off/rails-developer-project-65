@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h1><%= t('admin.categories.new.title') %></h1>
+  <h1><%= t('.title') %></h1>
 
   <%= form_with model: [:admin, @category], local: true do |form| %>
     <% if @category.errors.any? %>
@@ -14,13 +14,13 @@
     <% end %>
 
     <div class="mb-3">
-      <%= form.label :name, t('admin.categories.new.name'), class: 'form-label' %>
+      <%= form.label :name, t('.name'), class: 'form-label' %>
       <%= form.text_field :name, class: 'form-control', required: true %>
     </div>
 
     <div class="mb-3">
-      <%= form.submit t('admin.categories.new.submit'), class: 'btn btn-primary' %>
-      <%= link_to t('admin.categories.new.cancel'), admin_categories_path, class: 'btn btn-secondary' %>
+      <%= form.submit t('.submit'), class: 'btn btn-primary' %>
+      <%= link_to t('.cancel'), admin_categories_path, class: 'btn btn-secondary' %>
     </div>
   <% end %>
 </div>
