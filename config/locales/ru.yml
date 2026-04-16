@@ -78,6 +78,19 @@ ru:
         all_bulletins: "Все объявления"
         categories: "Все категории"
 
+      home:
+        index:
+          title_field: "Название"
+          created_at_field: "Дата создания"
+          actions: "Действия"
+          publish: "Опубликовать"
+          reject: "Отклонить"
+          archive: "В архив"
+          confirm_publish: "Опубликовать объявление?"
+          confirm_reject: "Отклонить объявление?"
+          confirm_archive: "Отправить объявление в архив?"
+          no_bulletins: "Нет объявлений"
+
       categories:
         create:
           success: "Категория успешно создана"
