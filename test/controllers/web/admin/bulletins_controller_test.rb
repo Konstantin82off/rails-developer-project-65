@@ -12,7 +12,7 @@ module Web
         @bulletin = bulletins(:under_moderation)
         # Прикрепляем изображение из фикстуры
         @bulletin.image.attach(
-          io: File.open(Rails.root.join('test/fixtures/files/test_image.jpg')),
+          io: Rails.root.join('test/fixtures/files/test_image.jpg').open,
           filename: 'test_image.jpg',
           content_type: 'image/jpeg'
         )
