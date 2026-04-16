@@ -8,7 +8,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def publish
     @bulletin = Bulletin.find(params[:id])
-    authorize @bulletin
 
     if @bulletin.may_publish?
       @bulletin.publish!
@@ -20,7 +19,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def reject
     @bulletin = Bulletin.find(params[:id])
-    authorize @bulletin
 
     if @bulletin.may_reject?
       @bulletin.reject!
@@ -32,7 +30,6 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
   def archive
     @bulletin = Bulletin.find(params[:id])
-    authorize @bulletin
 
     if @bulletin.may_archive?
       @bulletin.archive!
