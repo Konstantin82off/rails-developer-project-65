@@ -17,7 +17,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     @category = Category.new(category_params)
 
     if @category.save
-      redirect_to admin_categories_path, notice: t('admin.categories.create.success')
+      redirect_to admin_categories_path, notice: t('.success')
     else
       render :new, status: :unprocessable_content
     end
@@ -27,7 +27,7 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     @category = Category.find(params[:id])
 
     if @category.update(category_params)
-      redirect_to admin_categories_path, notice: t('admin.categories.update.success')
+      redirect_to admin_categories_path, notice: t('.success')
     else
       render :edit, status: :unprocessable_content
     end
@@ -37,10 +37,10 @@ class Web::Admin::CategoriesController < Web::Admin::ApplicationController
     @category = Category.find(params[:id])
 
     if @category.bulletins.exists?
-      redirect_to admin_categories_path, alert: t('admin.categories.destroy.error')
+      redirect_to admin_categories_path, alert: t('.error')
     else
       @category.destroy
-      redirect_to admin_categories_path, notice: t('admin.categories.destroy.success')
+      redirect_to admin_categories_path, notice: t('.success')
     end
   end
 
