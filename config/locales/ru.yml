@@ -66,85 +66,82 @@ ru:
               blank: "Не более 5 Мб. Обязательное поле"
               too_big: "не должна превышать 5 Мб"
 
-  admin:
-    access_denied: "Доступ запрещен"
-    back_to_site: "На сайт"
-    logout: "Выйти"
-    dashboard: "Админка"
-
-    sidebar:
-      moderation: "Объявления на модерации"
-      all_bulletins: "Все объявления"
-      categories: "Все категории"
-
-    categories:
-      create:
-        success: "Категория успешно создана"
-      update:
-        success: "Категория успешно обновлена"
-      destroy:
-        success: "Категория успешно удалена"
-        error: "Нельзя удалить категорию, содержащую объявления"
-      new:
-        title: "Новая категория"
-        name: "Название категории"
-        submit: "Создать"
-        cancel: "Отмена"
-      edit:
-        title: "Редактирование категории"
-        name: "Название категории"
-        submit: "Сохранить"
-        cancel: "Отмена"
-      index:
-        title: "Категории"
-        new_category: "Добавить категорию"
-        id: "ID"
-        name: "Название"
-        actions: "Действия"
-        edit: "Редактировать"
-        delete: "Удалить"
-        confirm_delete: "Вы уверены?"
-        description: "Управление категориями объявлений"
-        manage: "Управлять категориями"
-
-    bulletins:
-      publish:
-        success: "Объявление успешно опубликовано"
-        failure: "Не удалось опубликовать объявление"
-      reject:
-        success: "Объявление успешно отклонено"
-        failure: "Не удалось отклонить объявление"
-      archive:
-        success: "Объявление успешно отправлено в архив"
-        failure: "Не удалось отправить объявление в архив"
-      index:
-        title: "Объявления на модерации"
-        search_label: "Искать по названию объявления"
-        status_label: "По состоянию"
-        all_statuses: "Все статусы"
-        search: "Искать"
-        reset: "Сброс"
-        title_field: "Название"
-        status_field: "Состояние"
-        created_at_field: "Дата создания"
-        actions: "Действия"
-        show: "Показать"
-        publish: "Опубликовать"
-        reject: "Вернуть"
-        archive: "В архив"
-        confirm_publish: "Опубликовать объявление?"
-        confirm_reject: "Вернуть объявление на доработку?"
-        confirm_archive: "Отправить объявление в архив?"
-        state_draft: "Черновик"
-        state_under_moderation: "На модерации"
-        state_published: "Опубликовано"
-        state_rejected: "Отклонено"
-        state_archived: "В архиве"
-        no_bulletins: "Нет объявлений"
-        description: "Публикация, отклонение и архивация объявлений"
-        manage: "Управлять объявлениями"
-
   web:
+    admin:
+      access_denied: "Доступ запрещен"
+      back_to_site: "На сайт"
+      logout: "Выйти"
+      dashboard: "Админка"
+
+      sidebar:
+        moderation: "Объявления на модерации"
+        all_bulletins: "Все объявления"
+        categories: "Все категории"
+
+      categories:
+        create:
+          success: "Категория успешно создана"
+        update:
+          success: "Категория успешно обновлена"
+        destroy:
+          success: "Категория успешно удалена"
+          error: "Нельзя удалить категорию, содержащую объявления"
+        new:
+          title: "Новая категория"
+          name: "Название категории"
+          submit: "Создать"
+          cancel: "Отмена"
+        edit:
+          title: "Редактирование категории"
+          name: "Название категории"
+          submit: "Сохранить"
+          cancel: "Отмена"
+        index:
+          title: "Категории"
+          new_category: "Добавить категорию"
+          id: "ID"
+          name: "Название"
+          actions: "Действия"
+          edit: "Редактировать"
+          delete: "Удалить"
+          confirm_delete: "Вы уверены?"
+          description: "Управление категориями объявлений"
+          manage: "Управлять категориями"
+
+      bulletins:
+        publish:
+          success: "Объявление успешно опубликовано"
+          failure: "Не удалось опубликовать объявление"
+        reject:
+          success: "Объявление успешно отклонено"
+          failure: "Не удалось отклонить объявление"
+        archive:
+          success: "Объявление успешно отправлено в архив"
+          failure: "Не удалось отправить объявление в архив"
+        index:
+          title_field: "Название"
+          status_field: "Состояние"
+          created_at_field: "Дата создания"
+          actions: "Действия"
+          show: "Показать"
+          publish: "Опубликовать"
+          reject: "Вернуть"
+          archive: "В архив"
+          confirm_publish: "Опубликовать объявление?"
+          confirm_reject: "Вернуть объявление на доработку?"
+          confirm_archive: "Отправить объявление в архив?"
+          state_draft: "Черновик"
+          state_under_moderation: "На модерации"
+          state_published: "Опубликовано"
+          state_rejected: "Отклонено"
+          state_archived: "В архиве"
+          no_bulletins: "Нет объявлений"
+          search_label: "Искать по названию объявления"
+          status_label: "По состоянию"
+          all_statuses: "Все статусы"
+          search: "Искать"
+          reset: "Сброс"
+
     bulletins:
       index:
         title: "Объявления"
