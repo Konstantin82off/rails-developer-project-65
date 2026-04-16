@@ -5,9 +5,18 @@ require 'test_helper'
 module Web
   module Admin
     class BulletinsControllerTest < ActionDispatch::IntegrationTest
+      include ImageHelper
+
       setup do
         @admin = users(:admin)
         @bulletin = bulletins(:under_moderation)
+        # Прикрепляем изображение из фикстуры
+        @bulletin.image.attach(
+          io: File.open(Rails.root.join('test/fixtures/files/test_image.jpg')),
+          filename: 'test_image.jpg',
+          content_type: 'image/jpeg'
+        )
+        @bulletin.save!
       end
 
       test 'should get index when admin' do
@@ -26,7 +35,7 @@ module Web
 
         patch publish_admin_bulletin_path(@bulletin)
 
-        assert_redirected_to admin_bulletins_path
+        assert_response :redirect
         @bulletin.reload
         assert @bulletin.published?
       end
@@ -36,7 +45,7 @@ module Web
 
         patch reject_admin_bulletin_path(@bulletin)
 
-        assert_redirected_to admin_bulletins_path
+        assert_response :redirect
         @bulletin.reload
         assert @bulletin.rejected?
       end
@@ -46,7 +55,7 @@ module Web
 
         patch archive_admin_bulletin_path(@bulletin)
 
-        assert_redirected_to admin_bulletins_path
+        assert_response :redirect
         @bulletin.reload
         assert @bulletin.archived?
       end

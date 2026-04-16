@@ -165,7 +165,7 @@ ru:
         created_at: "Дата"
 
       show:
-        back: "← Назад к объявлениям"
+        back: "← Назад"
         description: "Описание"
         author: "Автор"
         category: "Категория"
