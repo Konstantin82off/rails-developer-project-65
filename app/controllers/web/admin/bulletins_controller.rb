@@ -11,9 +11,9 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
     if @bulletin.may_publish?
       @bulletin.publish!
-      redirect_back_or_to admin_root_url, notice: t('admin.bulletins.publish.success')
+      redirect_back_or_to admin_root_url, notice: t('.success')
     else
-      redirect_back_or_to admin_root_url, alert: t('admin.bulletins.publish.failure')
+      redirect_back_or_to admin_root_url, alert: t('.failure')
     end
   end
 
@@ -22,9 +22,9 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
     if @bulletin.may_reject?
       @bulletin.reject!
-      redirect_back_or_to admin_root_url, notice: t('admin.bulletins.reject.success')
+      redirect_back_or_to admin_root_url, notice: t('.success')
     else
-      redirect_back_or_to admin_root_url, alert: t('admin.bulletins.reject.failure')
+      redirect_back_or_to admin_root_url, alert: t('.failure')
     end
   end
 
@@ -33,9 +33,9 @@ class Web::Admin::BulletinsController < Web::Admin::ApplicationController
 
     if @bulletin.may_archive?
       @bulletin.archive!
-      redirect_back_or_to admin_root_url, notice: t('admin.bulletins.archive.success')
+      redirect_back_or_to admin_root_url, notice: t('.success')
     else
-      redirect_back_or_to admin_root_url, alert: t('admin.bulletins.archive.failure')
+      redirect_back_or_to admin_root_url, alert: t('.failure')
     end
   end
 end
