@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+  <div class="container-fluid" style="padding-left: 8rem; padding-right: 8rem;">
+    <div class="d-flex align-items-center gap-3">
+      <%= link_to t('layouts.application.brand'), root_path, class: "navbar-brand fs-5 fw-normal" %>
+      <%= link_to t('web.bulletins.index.home'), root_path, class: "nav-link fs-6 text-secondary" %>
+      <% if signed_in? %>
+        <%= link_to t('web.profiles.show.title'), profile_path, class: "nav-link fs-6 text-secondary" %>
+        <%= link_to t('web.bulletins.index.new_bulletin'), new_bulletin_path, class: "nav-link fs-6 text-secondary" %>
+      <% end %>
+    </div>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <% if signed_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item">
+              <%= link_to t('admin.dashboard'), admin_root_path, class: "nav-link fs-6" %>
+            </li>
+          <% end %>
+          <li class="nav-item">
+            <%= button_to t('auth.logout'), logout_path, method: :delete, data: { turbo: false }, class: 'nav-link btn btn-link' %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= button_to auth_request_path('github'), method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
+              <i class="bi bi-github me-1"></i> <%= t('auth.login') %>
+            <% end %>
+          </li>
+          <% if Rails.env.development? %>
+            <li class="nav-item">
+              <%= button_to auth_request_path('developer'), method: :post, data: { turbo: false }, class: 'nav-link btn btn-link' do %>
+                🔧 Dev Login
+              <% end %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
