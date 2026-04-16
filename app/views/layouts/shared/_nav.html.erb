@@ -18,7 +18,7 @@
         <% if signed_in? %>
           <% if current_user.admin? %>
             <li class="nav-item">
-              <%= link_to t('admin.dashboard'), admin_root_path, class: "nav-link fs-6" %>
+              <%= link_to t('web.admin.dashboard'), admin_root_path, class: "nav-link fs-6" %>
             </li>
           <% end %>
           <li class="nav-item">
