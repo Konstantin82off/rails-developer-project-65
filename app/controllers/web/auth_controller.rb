@@ -7,7 +7,7 @@ class Web::AuthController < Web::ApplicationController
 
     user = find_or_create_user(auth_hash)
 
-    if user.persisted?
+    if user.save
       sign_in(user)
       redirect_to root_path, notice: t('auth.success')
     else
@@ -26,10 +26,7 @@ class Web::AuthController < Web::ApplicationController
     email = auth_hash[:info][:email].downcase
     user = User.find_or_initialize_by(email: email)
 
-    return user unless user.new_record?
-
     user.name = auth_hash[:info][:name]
-    user.save
     user
   end
 end
