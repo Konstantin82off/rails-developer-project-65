@@ -16,7 +16,7 @@ module Web
 
     test 'should not get show when not signed in' do
       get profile_path
-      assert_redirected_to root_path
+      assert_redirected_to '/auth/github'
     end
   end
 end
