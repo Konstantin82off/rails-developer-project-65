@@ -12,23 +12,20 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def new
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = Bulletin.new
   end
 
   def edit
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = Bulletin.find(params[:id])
     authorize @bulletin
   end
 
   def create
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = current_user.bulletins.build(bulletin_params)
 
@@ -40,8 +37,7 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def update
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = Bulletin.find(params[:id])
     authorize @bulletin
@@ -54,8 +50,7 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def to_moderate
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = Bulletin.find(params[:id])
     authorize @bulletin
@@ -69,8 +64,7 @@ class Web::BulletinsController < Web::ApplicationController
   end
 
   def archive
-    authenticate_user!
-    return unless signed_in?
+    return unless authenticate_user!
 
     @bulletin = Bulletin.find(params[:id])
     authorize @bulletin
