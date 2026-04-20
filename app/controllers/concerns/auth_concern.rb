@@ -28,6 +28,6 @@ module AuthConcern
   def authenticate_user!
     return if signed_in?
 
-    redirect_to auth_request_path("github"), alert: t("auth.please_login")
+    redirect_to auth_request_path('github'), alert: t('auth.please_login')
   end
 end
