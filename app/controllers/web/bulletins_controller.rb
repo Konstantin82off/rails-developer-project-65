@@ -9,6 +9,7 @@ class Web::BulletinsController < Web::ApplicationController
 
   def show
     @bulletin = Bulletin.find(params[:id])
+    authorize @bulletin
   end
 
   def new
