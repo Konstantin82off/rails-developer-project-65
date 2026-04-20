@@ -29,7 +29,7 @@ module AuthConcern
   def authenticate_user!
     return true if signed_in?
 
-    redirect_to auth_request_path('github')
+    redirect_to auth_request_path('github'), alert: t('auth.please_login')
     false
   end
   # rubocop:enable Naming/PredicateMethod
