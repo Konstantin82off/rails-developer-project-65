@@ -17,7 +17,10 @@
       <div class="mb-3">
         <%= f.label :title, class: 'form-label' do %>
           <%= t('activerecord.attributes.bulletin.title') %>
-          <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right" title="<%= t('activerecord.errors.models.bulletin.attributes.title.blank') %>" style="cursor: help;">*</span>
+          <span class="text-muted cursor-help"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="<%= t('activerecord.errors.models.bulletin.attributes.title.blank') %>">*</span>
         <% end %>
         <%= f.text_field :title, class: "form-control #{'is-invalid' if @bulletin.errors[:title].any?}", required: true %>
         <% if @bulletin.errors[:title].any? %>
@@ -30,7 +33,10 @@
       <div class="mb-3">
         <%= f.label :description, class: 'form-label' do %>
           <%= t('activerecord.attributes.bulletin.description') %>
-          <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right" title="<%= t('activerecord.errors.models.bulletin.attributes.description.blank') %>" style="cursor: help;">*</span>
+          <span class="text-muted cursor-help"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="<%= t('activerecord.errors.models.bulletin.attributes.description.blank') %>">*</span>
         <% end %>
         <%= f.text_area :description, class: "form-control #{'is-invalid' if @bulletin.errors[:description].any?}", rows: 5, required: true %>
         <% if @bulletin.errors[:description].any? %>
@@ -55,7 +61,10 @@
       <div class="mb-3">
         <%= f.label :image, class: 'form-label' do %>
           <%= t('activerecord.attributes.bulletin.image') %>
-          <span class="text-muted" data-bs-toggle="tooltip" data-bs-placement="right" title="<%= t('activerecord.errors.models.bulletin.attributes.image.blank') %>" style="cursor: help;">*</span>
+          <span class="text-muted cursor-help"
+                data-bs-toggle="tooltip"
+                data-bs-placement="right"
+                title="<%= t('activerecord.errors.models.bulletin.attributes.image.blank') %>">*</span>
         <% end %>
         <%= f.file_field :image, class: "form-control #{'is-invalid' if @bulletin.errors[:image].any?}", accept: 'image/*' %>
         <% if @bulletin.errors[:image].any? %>

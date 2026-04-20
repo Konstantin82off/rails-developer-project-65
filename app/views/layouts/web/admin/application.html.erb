@@ -13,9 +13,8 @@
   <body>
     <%= render 'layouts/shared/nav' %>
 
-    <div class="container-fluid" style="padding-left: 8rem; padding-right: 8rem;">
+    <div class="container px-5">
       <div class="row mt-4">
-        <!-- Левая боковая панель -->
         <div class="col-md-3">
           <div class="list-group">
             <%= link_to t('web.admin.sidebar.moderation'), admin_root_path, class: "list-group-item list-group-item-action #{current_page?(admin_root_path) ? 'active' : ''}" %>
@@ -24,7 +23,6 @@
           </div>
         </div>
 
-        <!-- Основное содержимое -->
         <div class="col-md-9">
           <%= render 'layouts/shared/flash' %>
 
