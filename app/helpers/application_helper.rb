@@ -14,6 +14,10 @@ module ApplicationHelper
   end
 
   def nav_item_link(name, link_path)
-    link_to name, link_path, class: class_names('list-group-item', 'list-group-item-action', active: current_page?(link_path))
+    link_to name, link_path, class: class_names(
+      'list-group-item',
+      'list-group-item-action',
+      active: current_page?(link_path)
+    )
   end
 end

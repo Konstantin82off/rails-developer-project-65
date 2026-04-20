@@ -49,12 +49,48 @@ end
 
 # Создаем объявления из фикстур (только если их нет)
 bulletins_from_fixtures = [
-  { title: 'Продам Toyota Camry', description: 'Отличный автомобиль, 2020 года, в хорошем состоянии', user: users.first, category: categories.find { |c| c.name == 'Автомобили' }, state: 'published' },
-  { title: 'iPhone 14 Pro Max', description: 'Новый, в упаковке, гарантия', user: users.second, category: categories.find { |c| c.name == 'Электроника' }, state: 'published' },
-  { title: 'Требуется Ruby разработчик', description: 'Удаленная работа, гибкий график', user: users.first, category: categories.find { |c| c.name == 'Работа' }, state: 'published' },
-  { title: 'На модерации', description: 'Объявление на модерации', user: users.first, category: categories.find { |c| c.name == 'Автомобили' }, state: 'under_moderation' },
-  { title: 'Черновик', description: 'Черновик объявления', user: users.second, category: categories.find { |c| c.name == 'Электроника' }, state: 'draft' },
-  { title: 'Отклоненное объявление', description: 'Это объявление было отклонено', user: users.first, category: categories.find { |c| c.name == 'Работа' }, state: 'rejected' }
+  {
+    title: 'Продам Toyota Camry',
+    description: 'Отличный автомобиль, 2020 года, в хорошем состоянии',
+    user: users.first,
+    category: categories.find { |c| c.name == 'Автомобили' },
+    state: 'published'
+  },
+  {
+    title: 'iPhone 14 Pro Max',
+    description: 'Новый, в упаковке, гарантия',
+    user: users.second,
+    category: categories.find { |c| c.name == 'Электроника' },
+    state: 'published'
+  },
+  {
+    title: 'Требуется Ruby разработчик',
+    description: 'Удаленная работа, гибкий график',
+    user: users.first,
+    category: categories.find { |c| c.name == 'Работа' },
+    state: 'published'
+  },
+  {
+    title: 'На модерации',
+    description: 'Объявление на модерации',
+    user: users.first,
+    category: categories.find { |c| c.name == 'Автомобили' },
+    state: 'under_moderation'
+  },
+  {
+    title: 'Черновик',
+    description: 'Черновик объявления',
+    user: users.second,
+    category: categories.find { |c| c.name == 'Электроника' },
+    state: 'draft'
+  },
+  {
+    title: 'Отклоненное объявление',
+    description: 'Это объявление было отклонено',
+    user: users.first,
+    category: categories.find { |c| c.name == 'Работа' },
+    state: 'rejected'
+  }
 ]
 
 bulletins_from_fixtures.each do |data|
