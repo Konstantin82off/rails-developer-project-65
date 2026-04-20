@@ -65,6 +65,10 @@ ru:
             image:
               blank: "Не более 5 Мб. Обязательное поле"
               too_big: "не должна превышать 5 Мб"
+        category:
+          attributes:
+            name:
+              taken: "уже существует"
 
   web:
     admin:
