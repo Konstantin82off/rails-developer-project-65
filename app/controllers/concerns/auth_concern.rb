@@ -25,12 +25,9 @@ module AuthConcern
     current_user.present?
   end
 
-  # rubocop:disable Naming/PredicateMethod
   def authenticate_user!
-    return true if signed_in?
+    return if signed_in?
 
-    redirect_to auth_request_path('github'), alert: t('auth.please_login')
-    false
+    redirect_to auth_request_path("github"), alert: t("auth.please_login")
   end
-  # rubocop:enable Naming/PredicateMethod
 end

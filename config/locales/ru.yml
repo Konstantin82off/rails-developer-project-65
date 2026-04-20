@@ -50,6 +50,8 @@ ru:
         description: "Описание"
         category: "Категория"
         image: "Фотография"
+      category:
+        name: "Название"
     errors:
       models:
         bulletin:
