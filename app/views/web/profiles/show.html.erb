@@ -17,13 +17,7 @@
         </div>
         <div class="col-12 col-md-4">
           <%= f.select :state_eq,
-              options_for_select([
-                [t('web.profiles.show.statuses.draft'), 'draft'],
-                [t('web.profiles.show.statuses.under_moderation'), 'under_moderation'],
-                [t('web.profiles.show.statuses.published'), 'published'],
-                [t('web.profiles.show.statuses.rejected'), 'rejected'],
-                [t('web.profiles.show.statuses.archived'), 'archived']
-              ]),
+              Bulletin.aasm.states.map { |state| [state.human_name, state.name] },
               { include_blank: true },
               class: 'form-select' %>
           <label class="form-label small mt-1"><%= t('web.profiles.show.all_statuses') %></label>
