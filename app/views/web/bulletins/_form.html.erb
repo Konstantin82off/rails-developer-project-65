@@ -1,9 +1,9 @@
-<%= form_with model: @bulletin, local: true, class: 'mt-4' do |f| %>
-  <% if @bulletin.errors.any? %>
+<%= form_with model: bulletin, local: true, class: 'mt-4' do |f| %>
+  <% if bulletin.errors.any? %>
     <div class="alert alert-danger">
-      <h5><%= t('errors.messages.prohibited', count: @bulletin.errors.count, model: t('activerecord.models.bulletin')) %></h5>
+      <h5><%= t('errors.messages.prohibited', count: bulletin.errors.count, model: t('activerecord.models.bulletin')) %></h5>
       <ul>
-        <% @bulletin.errors.full_messages.each do |message| %>
+        <% bulletin.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -18,10 +18,10 @@
             data-bs-placement="right"
             title="<%= t('activerecord.errors.models.bulletin.attributes.title.blank') %>">*</span>
     <% end %>
-    <%= f.text_field :title, class: class_names('form-control', 'is-invalid': @bulletin.errors[:title].any?), required: true %>
-    <% if @bulletin.errors[:title].any? %>
+    <%= f.text_field :title, class: class_names('form-control', 'is-invalid': bulletin.errors[:title].any?), required: true %>
+    <% if bulletin.errors[:title].any? %>
       <div class="invalid-feedback">
-        <%= @bulletin.errors[:title].join(', ') %>
+        <%= bulletin.errors[:title].join(', ') %>
       </div>
     <% end %>
   </div>
@@ -34,10 +34,10 @@
             data-bs-placement="right"
             title="<%= t('activerecord.errors.models.bulletin.attributes.description.blank') %>">*</span>
     <% end %>
-    <%= f.text_area :description, class: class_names('form-control', 'is-invalid': @bulletin.errors[:description].any?), rows: 5, required: true %>
-    <% if @bulletin.errors[:description].any? %>
+    <%= f.text_area :description, class: class_names('form-control', 'is-invalid': bulletin.errors[:description].any?), rows: 5, required: true %>
+    <% if bulletin.errors[:description].any? %>
       <div class="invalid-feedback">
-        <%= @bulletin.errors[:description].join(', ') %>
+        <%= bulletin.errors[:description].join(', ') %>
       </div>
     <% end %>
   </div>
@@ -46,8 +46,8 @@
     <%= f.label :category_id, t('activerecord.attributes.bulletin.category'), class: 'form-label' %>
     <%= f.collection_select :category_id, Category.all, :id, :name,
         { prompt: t('web.bulletins.new.select_category') },
-        class: class_names('form-select', 'is-invalid': @bulletin.errors[:category_id].any?) %>
-    <% if @bulletin.errors[:category_id].any? %>
+        class: class_names('form-select', 'is-invalid': bulletin.errors[:category_id].any?) %>
+    <% if bulletin.errors[:category_id].any? %>
       <div class="invalid-feedback">
         <%= t('activerecord.errors.models.bulletin.attributes.category.required') %>
       </div>
@@ -62,8 +62,8 @@
             data-bs-placement="right"
             title="<%= t('activerecord.errors.models.bulletin.attributes.image.blank') %>">*</span>
     <% end %>
-    <%= f.file_field :image, class: class_names('form-control', 'is-invalid': @bulletin.errors[:image].any?), accept: 'image/*' %>
-    <% if @bulletin.errors[:image].any? %>
+    <%= f.file_field :image, class: class_names('form-control', 'is-invalid': bulletin.errors[:image].any?), accept: 'image/*' %>
+    <% if bulletin.errors[:image].any? %>
       <div class="invalid-feedback d-block">
         <%= t('activerecord.errors.models.bulletin.attributes.image.blank') %>
       </div>

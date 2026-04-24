@@ -3,6 +3,6 @@
     <h1 class="h3 mb-2 pb-2 border-bottom"><%= t('web.bulletins.new.title') %></h1>
 
     <% content_for :submit_text, t('web.bulletins.new.submit') %>
-    <%= render 'form' %>
+    <%= render 'form', bulletin: @bulletin %>
   </div>
 </div>
