@@ -85,7 +85,7 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   # Fix compatibility with Rails 8.0
-  gem 'minitest', '~> 5.25'
+  gem 'minitest', '~> 6.0'
 end
 
 group :production do
